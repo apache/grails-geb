@@ -9,8 +9,13 @@ This plugin provides the Geb dependencies and a `create-functional-test` command
 
 It also provides a `ContainerGebSpec` class, which can be used in place of `GebSpec`, that automatically
 runs the browser in a container using [Testcontainers](https://java.testcontainers.org/). This requires a
-[compatible container runtime](https://java.testcontainers.org/supported_docker_environment/) such as
-[Docker](https://www.docker.com/) to be installed.
+[compatible container runtime](https://java.testcontainers.org/supported_docker_environment/) be installed, such as:
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- [OrbStack](https://orbstack.dev/) - macOS only
+- [Rancher Desktop](https://rancherdesktop.io/)
+- [podman desktop](https://podman-desktop.io/)
+- [Colima](https://github.com/abiosoft/colima) - macOS and Linux
 
 For further reference please see the [Geb documentation](https://www.gebish.org).
 
