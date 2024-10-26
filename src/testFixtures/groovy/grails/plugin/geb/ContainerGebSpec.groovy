@@ -79,7 +79,7 @@ class ContainerGebSpec extends GebSpec {
     }
 
     def cleanupSpec() {
-        webDriverContainer.stop()
+        webDriverContainer?.stop()
     }
 
     /**
