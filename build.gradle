@@ -16,11 +16,8 @@ apply plugin: 'org.grails.grails-plugin'
 apply plugin: 'org.grails.internal.grails-plugin-publish'
 apply plugin: 'maven-publish'
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-        vendor = JvmVendorSpec.BELLSOFT
-    }
+tasks.withType(JavaCompile).configureEach {
+    options.release = 17
 }
 
 repositories {
