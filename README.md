@@ -5,7 +5,7 @@
 
 ## Geb Functional Testing for the Grails® framework
 
-This plugin integrates [Geb](https://www.gebish.org) with [Grails](https://www.grails.org) to make it easy to write functional tests for your applications.
+This plugin integrates [Geb](https://www.gebish.org) with [Grails](https://www.grails.org) to make it easy to write functional tests for your Grails applications.
 
 ## Examples
 
@@ -16,27 +16,32 @@ For further reference please see the [Geb documentation](https://www.gebish.org)
 
 ## Usage
 
-To use the plugin, add the following dependencies to your `build.gradle`:
+To use the plugin, add the following dependencies to your `build.gradle` file:
 ```groovy
 dependencies {
-    implementation 'org.grails.plugins:geb' // This is only needed to use the create-functional-test command (see below)
-    integrationTestImplemntation testFixtures('org.grails.plugins:geb') // This is needed to compile and run the tests
+    
+    // This is only needed to if you want to use the
+    // create-functional-test command (see below)
+    implementation 'org.grails.plugins:geb'
+    
+    // This is needed to compile and run the tests
+    integrationTestImplementation testFixtures('org.grails.plugins:geb')
 }
 ```
 
-To get started, you can use the `create-functional-test` command to generate a new Geb test:
+To get started, you can use the `create-functional-test` command to generate a new functional test using Geb:
 
 ```console
 ./grailsw create-functional-test com.example.MyFunctionalSpec
 ```
 
-This will create a new Geb test in the `src/integration-test/groovy/com/example` directory.
+This will create a new Geb test named `MyFunctionalSpec` in the `src/integration-test/groovy/com/example` directory.
 
-There are two ways to use this plugin, either by extending your test classes with the `ContainerGebSpec` class or with the `GebSpec` class.
+There are two ways to use this plugin. Either extend your test classes with the `ContainerGebSpec` class or with the `GebSpec` class.
 
 ### ContainerGebSpec (recommended)
 
-By extending your test classes with the `ContainerGebSpec` class, you can run your tests in a containerized browser using [Testcontainers](https://java.testcontainers.org/).
+By extending your test classes with `ContainerGebSpec`, your tests will automatically use a containerized browser using [Testcontainers](https://java.testcontainers.org/).
 This requires a [compatible container runtime](https://java.testcontainers.org/supported_docker_environment/) to be installed, such as:
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
@@ -50,13 +55,15 @@ Just run `./gradlew integrationTest` and a container will be started and configu
 
 ### GebSpec
 
-If you choose to use the `GebSpec` class, you will need to have a browser driver installed that matches a browser you have installed on your system.
-This plugin comes with the `selenium-chrome-driver` pre-installed, but you can also set up additional drivers.
+If you choose to extend `GebSpec`, you will need to have a [Selenium WebDriver](https://www.selenium.dev/documentation/webdriver/browsers/) installed that matches a browser you have installed on your system.
+This plugin comes with the `selenium-chrome-driver` java bindings pre-installed, but you can also add additional browser bindings.
 
-To set up additional drivers, you need to add the driver to your `build.gradle` for example:
+To set up additional bindings, you need to add them to your `build.gradle` for example:
 ```groovy
-integrationTestRuntimeOnly "org.seleniumhq.selenium:selenium-firefox-driver"
-integrationTestRuntimeOnly "org.seleniumhq.selenium:selenium-edge-driver"
+dependencies {
+    integrationTestImplementation 'org.seleniumhq.selenium:selenium-firefox-driver'
+    integrationTestImplementation 'org.seleniumhq.selenium:selenium-edge-driver'
+}
 ```
 
 You also need to add a `GebConfig.groovy` file in the `src/integration-test/resources/` directory. For example:
@@ -83,8 +90,7 @@ environments {
 }
 ```
 
-and pass on the `geb.env` system property when running your tests via Gradle
-
+And pass on the `geb.env` system property if running your tests via Gradle:
 ```groovy
 // build.gradle
 tasks.withType(Test) {
