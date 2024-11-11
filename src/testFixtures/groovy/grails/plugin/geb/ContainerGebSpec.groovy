@@ -129,7 +129,7 @@ class ContainerGebSpec extends GebSpec implements ContainerAwareDownloader {
      */
     @Override
     String getHostNameFromHost() {
-        return hostName != DEFAULT_HOSTNAME_FROM_CONTAINER ? DEFAULT_HOSTNAME_FROM_CONTAINER : DEFAULT_HOSTNAME_FROM_HOST
+        return hostName == DEFAULT_HOSTNAME_FROM_CONTAINER ? DEFAULT_HOSTNAME_FROM_HOST : hostName
     }
 
     @Override
