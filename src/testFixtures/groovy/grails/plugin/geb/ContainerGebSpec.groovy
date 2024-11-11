@@ -16,7 +16,10 @@
 package grails.plugin.geb
 
 import geb.spock.GebSpec
+import groovy.transform.CompileDynamic
+import groovy.transform.CompileStatic
 import groovy.transform.PackageScope
+import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeOptions
 import org.openqa.selenium.remote.RemoteWebDriver
 import org.testcontainers.Testcontainers
@@ -44,10 +47,12 @@ import java.time.Duration
  * @author Mattias Reichel
  * @since 5.0.0
  */
-class ContainerGebSpec extends GebSpec {
+@CompileStatic
+class ContainerGebSpec extends GebSpec implements ContainerDownloadSupport {
 
     private static final String DEFAULT_PROTOCOL = 'http'
-    private static final String DEFAULT_HOSTNAME = 'host.testcontainers.internal'
+    private static final String DEFAULT_HOSTNAME_FROM_CONTAINER = 'host.testcontainers.internal'
+    private static final String DEFAULT_HOSTNAME_FROM_HOST = 'localhost'
 
     @Shared
     BrowserWebDriverContainer webDriverContainer
@@ -55,27 +60,25 @@ class ContainerGebSpec extends GebSpec {
     @PackageScope
     void initialize() {
         if (!webDriverContainer) {
-            if (!hasProperty('serverPort')) {
-                throw new IllegalStateException('Test class must be annotated with @Integration for serverPort to be injected')
-            }
             webDriverContainer = new BrowserWebDriverContainer()
-            Testcontainers.exposeHostPorts(serverPort)
+            Testcontainers.exposeHostPorts(port)
             webDriverContainer.tap {
-                addExposedPort(serverPort)
+                addExposedPort(this.port)
                 withAccessToHost(true)
                 start()
             }
-            if (hostName != DEFAULT_HOSTNAME) {
+            if (hostName != DEFAULT_HOSTNAME_FROM_CONTAINER) {
                 webDriverContainer.execInContainer('/bin/sh', '-c', "echo '$hostIp\t$hostName' | sudo tee -a /etc/hosts")
             }
-            browser.driver = new RemoteWebDriver(webDriverContainer.seleniumAddress, new ChromeOptions())
-            browser.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30))
+            WebDriver driver = new RemoteWebDriver(webDriverContainer.seleniumAddress, new ChromeOptions())
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30))
+            browser.driver = driver
         }
     }
 
     void setup() {
         initialize()
-        baseUrl = "$protocol://$hostName:$serverPort"
+        browser.baseUrl = "$protocol://$hostName:$port"
     }
 
     def cleanupSpec() {
@@ -107,13 +110,38 @@ class ContainerGebSpec extends GebSpec {
     /**
      * Returns the hostname that the browser will use to access the server under test.
      * <p>Defaults to {@code host.testcontainers.internal}.
+     * <p>This is useful when the server under test needs to be accessed with a certain hostname.
      *
      * @return the hostname for accessing the server under test
      */
     String getHostName() {
-        return DEFAULT_HOSTNAME
+        return DEFAULT_HOSTNAME_FROM_CONTAINER
     }
 
+    /**
+     * Returns the hostname that the server under test is available on from the host.
+     * <p>This is useful when using any of the {@code download*()} methods as they will connect from the host,
+     * and not from within the container.
+     * <p>Defaults to {@code localhost}. If the value returned by {@code getHostName()}
+     * is different from the default, this method will return the same value same as {@code getHostName()}.
+     *
+     * @return the hostname for accessing the server under test from the host
+     */
+    @Override
+    String getHostNameFromHost() {
+        return hostName != DEFAULT_HOSTNAME_FROM_CONTAINER ? DEFAULT_HOSTNAME_FROM_CONTAINER : DEFAULT_HOSTNAME_FROM_HOST
+    }
+
+    @Override
+    int getPort() {
+        try {
+            return (int) getProperty('serverPort')
+        } catch (Exception ignore) {
+            throw new IllegalStateException('Test class must be annotated with @Integration for serverPort to be injected')
+        }
+    }
+
+    @CompileDynamic
     private static String getHostIp() {
         PortForwardingContainer.INSTANCE.network.get().ipAddress
     }
