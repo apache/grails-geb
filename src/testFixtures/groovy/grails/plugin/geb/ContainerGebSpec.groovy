@@ -48,7 +48,7 @@ import java.time.Duration
  * @since 5.0.0
  */
 @CompileStatic
-class ContainerGebSpec extends GebSpec implements ContainerDownloadSupport {
+class ContainerGebSpec extends GebSpec implements ContainerAwareDownloader {
 
     private static final String DEFAULT_PROTOCOL = 'http'
     private static final String DEFAULT_HOSTNAME_FROM_CONTAINER = 'host.testcontainers.internal'
