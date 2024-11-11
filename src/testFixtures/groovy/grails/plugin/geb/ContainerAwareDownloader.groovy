@@ -22,7 +22,15 @@ import groovy.transform.CompileStatic
 import org.openqa.selenium.Cookie
 
 /**
- * A {@link geb.download.DownloadSupport} implementation that allows for using the {@code download*()} methods.
+ * A custom implementation of {@link geb.download.DownloadSupport} for enabling the use of its {@code download*()} methods
+ * within {@code ContainerGebSpec} environments.
+ *
+ * <p>This implementation is based on {@code DefaultDownloadSupport} from Geb, with modifications to support
+ * containerized environments. Specifically, it enables file downloads by resolving URLs relative to the host
+ * rather than the internal hostname used by the browser within the container.</p>
+ *
+ * <p>These adaptations allow the download functionality to operate correctly when tests are executed in containerized
+ * setups, ensuring the host network context is used for download requests.</p>
  *
  * @author Mattias Reichel
  * @since 5.0.0
