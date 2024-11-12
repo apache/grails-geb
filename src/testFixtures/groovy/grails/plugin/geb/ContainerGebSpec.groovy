@@ -50,9 +50,9 @@ import java.time.Duration
 @CompileStatic
 class ContainerGebSpec extends GebSpec implements ContainerAwareDownloader {
 
-    private static final String DEFAULT_PROTOCOL = 'http'
     private static final String DEFAULT_HOSTNAME_FROM_CONTAINER = 'host.testcontainers.internal'
     private static final String DEFAULT_HOSTNAME_FROM_HOST = 'localhost'
+    private static final String DEFAULT_PROTOCOL = 'http'
 
     @Shared
     BrowserWebDriverContainer webDriverContainer
