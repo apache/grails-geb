@@ -54,6 +54,8 @@ class ContainerGebSpec extends GebSpec implements ContainerAwareDownloader {
     private static final String DEFAULT_HOSTNAME_FROM_HOST = 'localhost'
     private static final String DEFAULT_PROTOCOL = 'http'
 
+    private String hostNameFromContainer = DEFAULT_HOSTNAME_FROM_CONTAINER
+
     @Shared
     BrowserWebDriverContainer webDriverContainer
 
@@ -115,7 +117,11 @@ class ContainerGebSpec extends GebSpec implements ContainerAwareDownloader {
      * @return the hostname for accessing the server under test
      */
     String getHostName() {
-        return DEFAULT_HOSTNAME_FROM_CONTAINER
+        return hostNameFromContainer
+    }
+
+    void setHostName(String hostName) {
+        hostNameFromContainer = hostName
     }
 
     /**
