@@ -61,25 +61,23 @@ class ContainerGebSpec extends GebSpec implements ContainerAwareDownloader {
 
     @PackageScope
     void initialize() {
-        if (!webDriverContainer) {
-            webDriverContainer = new BrowserWebDriverContainer()
-            Testcontainers.exposeHostPorts(port)
-            webDriverContainer.tap {
-                addExposedPort(this.port)
-                withAccessToHost(true)
-                start()
-            }
-            if (hostName != DEFAULT_HOSTNAME_FROM_CONTAINER) {
-                webDriverContainer.execInContainer('/bin/sh', '-c', "echo '$hostIp\t$hostName' | sudo tee -a /etc/hosts")
-            }
-            WebDriver driver = new RemoteWebDriver(webDriverContainer.seleniumAddress, new ChromeOptions())
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30))
-            browser.driver = driver
+        webDriverContainer = new BrowserWebDriverContainer()
+        Testcontainers.exposeHostPorts(port)
+        webDriverContainer.tap {
+            addExposedPort(this.port)
+            withAccessToHost(true)
+            start()
         }
+        if (hostNameChanged) {
+            webDriverContainer.execInContainer('/bin/sh', '-c', "echo '$hostIp\t$hostName' | sudo tee -a /etc/hosts")
+        }
+        WebDriver driver = new RemoteWebDriver(webDriverContainer.seleniumAddress, new ChromeOptions())
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30))
+        browser.driver = driver
     }
 
     void setup() {
-        initialize()
+        if (notInitialized) initialize()
         browser.baseUrl = "$protocol://$hostName:$port"
     }
 
@@ -135,7 +133,7 @@ class ContainerGebSpec extends GebSpec implements ContainerAwareDownloader {
      */
     @Override
     String getHostNameFromHost() {
-        return hostName == DEFAULT_HOSTNAME_FROM_CONTAINER ? DEFAULT_HOSTNAME_FROM_HOST : hostName
+        return hostNameChanged ? hostName : DEFAULT_HOSTNAME_FROM_HOST
     }
 
     @Override
@@ -150,5 +148,13 @@ class ContainerGebSpec extends GebSpec implements ContainerAwareDownloader {
     @CompileDynamic
     private static String getHostIp() {
         PortForwardingContainer.INSTANCE.network.get().ipAddress
+    }
+
+    private boolean isHostNameChanged() {
+        return hostNameFromContainer != DEFAULT_HOSTNAME_FROM_CONTAINER
+    }
+
+    private boolean isNotInitialized() {
+        webDriverContainer == null
     }
 }
