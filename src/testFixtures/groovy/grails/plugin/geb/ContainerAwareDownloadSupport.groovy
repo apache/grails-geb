@@ -36,7 +36,7 @@ import org.openqa.selenium.Cookie
  * @since 5.0.0
  */
 @CompileStatic
-trait ContainerAwareDownloader implements DownloadSupport {
+trait ContainerAwareDownloadSupport implements DownloadSupport {
 
     // HTTP 1.1 states that this charset is the default if none was specified
     static final private DEFAULT_CHARSET = 'ISO-8859-1'

@@ -48,7 +48,7 @@ import java.time.Duration
  * @since 5.0.0
  */
 @CompileStatic
-abstract class ContainerGebSpec extends GebSpec implements ContainerAwareDownloader {
+abstract class ContainerGebSpec extends GebSpec implements ContainerAwareDownloadSupport {
 
     private static final String DEFAULT_HOSTNAME_FROM_CONTAINER = 'host.testcontainers.internal'
     private static final String DEFAULT_HOSTNAME_FROM_HOST = 'localhost'
