@@ -77,7 +77,9 @@ abstract class ContainerGebSpec extends GebSpec implements ContainerAwareDownloa
     }
 
     void setup() {
-        if (notInitialized) initialize()
+        if (notInitialized) {
+            initialize()
+        }
         browser.baseUrl = "$protocol://$hostName:$port"
     }
 

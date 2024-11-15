@@ -20,6 +20,7 @@ import geb.download.DownloadException
 import geb.download.DownloadSupport
 import groovy.transform.CompileStatic
 import org.openqa.selenium.Cookie
+import groovy.transform.SelfType
 
 /**
  * A custom implementation of {@link geb.download.DownloadSupport} for enabling the use of its {@code download*()} methods
@@ -36,6 +37,7 @@ import org.openqa.selenium.Cookie
  * @since 5.0.0
  */
 @CompileStatic
+@SelfType(ContainerGebSpec)
 trait ContainerAwareDownloadSupport implements DownloadSupport {
 
     // HTTP 1.1 states that this charset is the default if none was specified
