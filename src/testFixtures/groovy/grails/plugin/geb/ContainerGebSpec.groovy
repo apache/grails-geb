@@ -138,7 +138,6 @@ abstract class ContainerGebSpec extends GebSpec implements ContainerAwareDownloa
         return hostNameChanged ? hostName : DEFAULT_HOSTNAME_FROM_HOST
     }
 
-    @Override
     int getPort() {
         try {
             return (int) getProperty('serverPort')
