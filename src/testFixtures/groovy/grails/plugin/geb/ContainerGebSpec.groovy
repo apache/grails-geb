@@ -62,7 +62,7 @@ abstract class ContainerGebSpec extends Specification implements ManagedGebTest,
     @Override
     @Delegate(includes = ['getBrowser', 'report'])
     GebTestManager getTestManager() {
-        return getReportingEnabled() ?
+        return isReportingEnabled() ?
                 GebTestManagerProvider.getReportingInstance() :
                 GebTestManagerProvider.getInstance()
     }
