@@ -15,9 +15,9 @@
  */
 package grails.plugin.geb
 
-import geb.spock.GebSpec
-import groovy.transform.CompileDynamic
-import groovy.transform.CompileStatic
+import geb.test.GebTestManager
+import geb.test.ManagedGebTest
+import geb.transform.DynamicallyDispatchesToBrowser
 import groovy.transform.PackageScope
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeOptions
@@ -26,6 +26,7 @@ import org.testcontainers.Testcontainers
 import org.testcontainers.containers.BrowserWebDriverContainer
 import org.testcontainers.containers.PortForwardingContainer
 import spock.lang.Shared
+import spock.lang.Specification
 
 import java.time.Duration
 
@@ -47,14 +48,24 @@ import java.time.Duration
  * @author Mattias Reichel
  * @since 5.0.0
  */
-@CompileStatic
-abstract class ContainerGebSpec extends GebSpec implements ContainerAwareDownloadSupport {
+@DynamicallyDispatchesToBrowser
+abstract class ContainerGebSpec extends Specification implements ManagedGebTest, ContainerAwareDownloadSupport {
 
     private static final String DEFAULT_HOSTNAME_FROM_CONTAINER = 'host.testcontainers.internal'
     private static final String DEFAULT_HOSTNAME_FROM_HOST = 'localhost'
     private static final String DEFAULT_PROTOCOL = 'http'
 
     private String hostNameFromContainer = DEFAULT_HOSTNAME_FROM_CONTAINER
+
+    boolean reportingEnabled = false
+
+    @Override
+    @Delegate(includes = ['getBrowser', 'report'])
+    GebTestManager getTestManager() {
+        return getReportingEnabled() ?
+                GebTestManagerProvider.getReportingInstance() :
+                GebTestManagerProvider.getInstance()
+    }
 
     @Shared
     BrowserWebDriverContainer webDriverContainer
@@ -146,7 +157,6 @@ abstract class ContainerGebSpec extends GebSpec implements ContainerAwareDownloa
         }
     }
 
-    @CompileDynamic
     private static String getHostIp() {
         PortForwardingContainer.INSTANCE.network.get().ipAddress
     }
