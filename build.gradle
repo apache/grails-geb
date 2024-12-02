@@ -35,6 +35,7 @@ dependencies {
     compileOnly 'org.grails:grails-core' // Provided as this is a Grails plugin
 
     testFixturesCompileOnly 'jakarta.servlet:jakarta.servlet-api'
+    testFixturesCompileOnly 'org.slf4j:slf4j-simple' // Remove compilation warning about missing slf4j impl
     testFixturesApi 'org.gebish:geb-spock'
     testFixturesApi 'org.grails:grails-testing-support'
     testFixturesApi 'org.grails:grails-datastore-gorm'
