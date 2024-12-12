@@ -90,6 +90,5 @@ java {
     sourceCompatibility = JavaVersion.VERSION_11
 }
 
-tasks.named('bootJar') { enabled = false }
 tasks.named('bootRun') { enabled = false }
 tasks.named('findMainClass') { enabled = false }
