@@ -24,9 +24,7 @@ repositories {
     maven { url = 'https://repo.grails.org/grails/core' }
 }
 
-configurations {
-    documentation
-}
+configurations.register('documentation')
 
 ext.set('selenium.version', seleniumVersion) // Override selenium version from spring-boot-dependencies
 
