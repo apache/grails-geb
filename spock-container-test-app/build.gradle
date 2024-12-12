@@ -4,7 +4,7 @@ plugins {
         id "org.grails.grails-gsp"
         id "war"
         id "idea"
-        id "com.bertramlabs.asset-pipeline" version "5.0.1"
+        id "com.bertramlabs.asset-pipeline" version "5.0.3"
         id "eclipse"
 }
 
