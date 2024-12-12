@@ -8,7 +8,7 @@ buildscript {
 }
 
 plugins {
-    id 'com.github.ben-manes.versions' version '0.39.0'
+    id 'com.github.ben-manes.versions' version '0.51.0'
 }
 
 version = projectVersion
@@ -20,34 +20,36 @@ apply plugin: 'org.grails.grails-plugin'
 apply plugin: 'org.grails.internal.grails-plugin-publish'
 apply plugin: 'maven-publish'
 
-sourceCompatibility = 11
-targetCompatibility = 11
-
 repositories {
-    maven { url "https://repo.grails.org/grails/core" }
+    maven { url = 'https://repo.grails.org/grails/core' }
 }
 
 configurations {
-    documentation.extendsFrom compileClasspath
+    documentation
 }
 
+ext.set('selenium.version', seleniumVersion) // Override selenium version from spring-boot-dependencies
+
 dependencies {
-    api "org.grails:grails-core:$grailsVersion"
+
+    compileOnly "org.grails:grails-core:$grailsVersion" // Provided, as this is a Grails plugin
 
     testFixturesApi "org.gebish:geb-spock:$gebVersion", {
-        exclude group: 'org.codehaus.groovy', module: 'groovy-all'
-        exclude group: 'org.seleniumhq.selenium', module: 'selenium-api'
+        exclude group: 'org.codehaus.groovy', module: 'groovy' // Provided by Grails
     }
-    testFixturesApi 'org.grails:grails-testing-support:3.0.0'
-    testFixturesApi 'org.grails:grails-datastore-gorm:8.0.0'
+    testFixturesApi "org.grails:grails-testing-support:$grailsTestingSupportVersion"
+    testFixturesApi "org.grails:grails-datastore-gorm:$gormVersion"
     testFixturesApi "org.testcontainers:selenium:$testcontainersVersion"
     testFixturesApi "org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion"
     testFixturesApi "org.seleniumhq.selenium:selenium-remote-driver:$seleniumVersion"
 
-    documentation "org.codehaus.groovy:groovy:$groovyVersion"
-    documentation "org.codehaus.groovy:groovy-ant:$groovyVersion"
-    documentation "org.codehaus.groovy:groovy-templates:$groovyVersion"
-    documentation "com.github.javaparser:javaparser-core:3.15.14"
+    testFixturesCompileOnly "org.slf4j:slf4j-nop:$slf4jVersion" // Remove warning about missing slf4j binding during compilation
+
+    documentation "org.codehaus.groovy:groovy:$GroovySystem.version"
+    documentation "org.codehaus.groovy:groovy-ant:$GroovySystem.version"
+    documentation "org.codehaus.groovy:groovy-templates:$GroovySystem.version"
+    documentation "org.codehaus.groovy:groovy-xml:$GroovySystem.version"
+    documentation "com.github.javaparser:javaparser-core:$javaparserVersion"
 }
 
 
@@ -72,6 +74,7 @@ tasks.withType(Groovydoc).configureEach {
     destinationDir = layout.buildDirectory.dir('docs/api').get().asFile
     docTitle = "Grails Geb Plugin ${version}"
     classpath = configurations.documentation
+    source = files(source, sourceSets.testFixtures.allSource)
 }
 
 tasks.withType(Test).configureEach {
@@ -83,6 +86,10 @@ tasks.withType(Test).configureEach {
         showCauses true
         showStackTraces true
     }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
 }
 
 tasks.named('bootJar') { enabled = false }

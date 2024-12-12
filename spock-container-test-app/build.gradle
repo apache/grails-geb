@@ -1,67 +1,66 @@
-plugins {
-        id "groovy"
-        id "org.grails.grails-web"
-        id "org.grails.grails-gsp"
-        id "war"
-        id "idea"
-        id "com.bertramlabs.asset-pipeline"
-        id "eclipse"
+buildscript {
+    repositories {
+        maven { url = 'https://repo.grails.org/grails/core/' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.bertramlabs.plugins:asset-pipeline-gradle:$assetPipelineVersion"
+        classpath "org.grails:grails-gradle-plugin:$grailsVersion"
+    }
 }
 
-group = "org.demo.spock"
+apply plugin: 'groovy'
+apply plugin: 'org.grails.grails-web'
+apply plugin: 'org.grails.grails-gsp'
+apply plugin: 'com.bertramlabs.asset-pipeline'
+
+group = 'org.demo.spock'
 
 repositories {
+    maven { url = 'https://repo.grails.org/grails/core' }
     mavenCentral()
-    maven { url "https://repo.grails.org/grails/core/" }
-    maven { url "https://repository.apache.org/content/repositories/snapshots"}
 }
 
 dependencies {
-    implementation("org.grails:grails-core")
-    implementation("org.grails:grails-logging")
-    implementation("org.grails:grails-plugin-databinding")
-    implementation("org.grails:grails-plugin-i18n")
-    implementation("org.grails:grails-plugin-interceptors")
-    implementation("org.grails:grails-plugin-rest")
-    implementation("org.grails:grails-plugin-services")
-    implementation("org.grails:grails-plugin-url-mappings")
-    implementation("org.grails:grails-web-boot")
-    implementation("org.grails.plugins:gsp")
-    implementation("org.grails.plugins:hibernate5")
-    implementation("org.grails.plugins:scaffolding")
-    implementation("org.hibernate:hibernate-core:5.6.15.Final")
-    implementation("org.springframework.boot:spring-boot-autoconfigure")
-    implementation("org.springframework.boot:spring-boot-starter")
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
-    implementation("org.springframework.boot:spring-boot-starter-logging")
-    implementation("org.springframework.boot:spring-boot-starter-tomcat")
-    implementation("org.springframework.boot:spring-boot-starter-validation")
-    compileOnly("io.micronaut:micronaut-inject-groovy")
-    console("org.grails:grails-console")
-    runtimeOnly("com.bertramlabs.plugins:asset-pipeline-grails:4.3.0")
-    runtimeOnly("com.h2database:h2")
-    runtimeOnly("javax.xml.bind:jaxb-api:2.3.1")
-    runtimeOnly("org.apache.tomcat:tomcat-jdbc")
-    runtimeOnly("org.fusesource.jansi:jansi:1.18")
-    runtimeOnly("org.glassfish.web:el-impl:2.2.1-b05")
-    testImplementation("io.micronaut:micronaut-inject-groovy")
-    testImplementation("org.grails:grails-gorm-testing-support")
-    testImplementation("org.grails:grails-web-testing-support")
-    testImplementation("org.grails.plugins:geb")
-    testImplementation("org.spockframework:spock-core")
-    testImplementation("io.micronaut:micronaut-http-client")
+
+    implementation 'org.grails:grails-core'
+    implementation 'org.grails:grails-logging'
+    implementation 'org.grails:grails-plugin-databinding'
+    implementation 'org.grails:grails-plugin-i18n'
+    implementation 'org.grails:grails-plugin-interceptors'
+    implementation 'org.grails:grails-plugin-rest'
+    implementation 'org.grails:grails-plugin-services'
+    implementation 'org.grails:grails-plugin-url-mappings'
+    implementation 'org.grails:grails-web-boot'
+    implementation 'org.grails.plugins:gsp'
+    implementation 'org.grails.plugins:hibernate5'
+    implementation 'org.grails.plugins:scaffolding'
+    implementation 'org.springframework.boot:spring-boot-autoconfigure'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-logging'
+    implementation 'org.springframework.boot:spring-boot-starter-tomcat'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    compileOnly 'io.micronaut:micronaut-inject-groovy'
+
+    runtimeOnly "com.bertramlabs.plugins:asset-pipeline-grails:$assetPipelineVersion"
+    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'org.apache.tomcat:tomcat-jdbc'
+    runtimeOnly 'org.fusesource.jansi:jansi:1.18'
+
+    testImplementation 'org.grails:grails-gorm-testing-support'
+    testImplementation 'org.grails:grails-web-testing-support'
+    testImplementation 'org.spockframework:spock-core'
 
     integrationTestImplementation testFixtures(project(':geb'))
 }
 
-sourceCompatibility = 1.11
-targetCompatibility = 1.11
-
-tasks.withType(Test) {
-    useJUnitPlatform()
-    systemProperty 'grails.geb.recording.mode', 'RECORD_ALL'
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
 }
-assets {
-    minifyJs = true
-    minifyCss = true
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+    systemProperty('grails.geb.recording.mode', 'RECORD_ALL')
 }

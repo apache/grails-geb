@@ -1,17 +1,5 @@
 
-pluginManagement {
-    repositories {
-        mavenLocal()
-        maven { url "https://repo.grails.org/grails/core/" }
-        gradlePluginPortal()
-    }
-    plugins {
-        id "org.grails.grails-web" version "6.0.0"
-        id "org.grails.grails-gsp" version "6.0.0"
-    }
-}
+rootProject.name = 'spock-container-test-app'
 
-rootProject.name="spock-container-test-app"
 include 'geb'
-
 project(':geb').projectDir = file('..')
