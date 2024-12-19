@@ -40,7 +40,8 @@ dependencies {
     testFixturesApi "org.testcontainers:selenium:$testcontainersVersion"
     testFixturesApi "org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion"
     testFixturesApi "org.seleniumhq.selenium:selenium-remote-driver:$seleniumVersion"
-    testFixturesApi "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
+
+    testFixturesImplementation "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
 
     testFixturesCompileOnly "org.slf4j:slf4j-nop:$slf4jVersion" // Remove warning about missing slf4j binding during compilation
 
