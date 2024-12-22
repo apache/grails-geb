@@ -48,7 +48,7 @@ jobs:
       - name: "📖 Generate Documentation"
         id: docs
         if: steps.publish.outcome == 'success'
-        with:
+        env:
           GITHUB_MAVEN_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         run: ./gradlew groovydoc
       - name: "📝 Export Gradle Properties"

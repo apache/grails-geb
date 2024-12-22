@@ -25,11 +25,11 @@ jobs:
           develocity-access-key: ${{ secrets.GRADLE_ENTERPRISE_ACCESS_KEY }}
       - name: "🔨 Build project"
         id: build
-        with:
+        env:
           GITHUB_MAVEN_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         run: ./gradlew build
       - name: "🏃‍♀️Run functional tests"
-        with:
+        env:
           GITHUB_MAVEN_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd spock-container-test-app
