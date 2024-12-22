@@ -67,6 +67,6 @@ jobs:
           VERSION: ${{ steps.release_version.outputs.release_version }}
       - name: "⚙️ Run post-release"
         if: success()
-        uses: micronaut-projects/github-actions/post-release@master
+        uses: grails/github-actions/post-release@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
