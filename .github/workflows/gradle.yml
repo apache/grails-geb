@@ -25,8 +25,12 @@ jobs:
           develocity-access-key: ${{ secrets.GRADLE_ENTERPRISE_ACCESS_KEY }}
       - name: "🔨 Build project"
         id: build
+        with:
+          GITHUB_MAVEN_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         run: ./gradlew build
       - name: "🏃‍♀️Run functional tests"
+        with:
+          GITHUB_MAVEN_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd spock-container-test-app
           ./gradlew check
@@ -58,7 +62,7 @@ jobs:
         run: ./gradlew groovydoc
       - name: "📤 Publish Snapshot Documentation to Github Pages"
         if: steps.docs.outcome == 'success'
-        uses: micronaut-projects/github-pages-deploy-action@grails
+        uses: grails/github-pages-deploy-action@grails
         env:
           BRANCH: gh-pages
           COMMIT_EMAIL: 'grails-build@users.noreply.github.com'
