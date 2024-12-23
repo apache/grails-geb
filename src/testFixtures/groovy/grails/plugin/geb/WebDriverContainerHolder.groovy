@@ -98,8 +98,7 @@ class WebDriverContainerHolder {
         }
 
         currentConfiguration = specConfiguration
-        currentContainer = new BrowserWebDriverContainer()
-        currentContainer = currentContainer.withRecordingMode(
+        currentContainer = new BrowserWebDriverContainer().withRecordingMode(
                 grailsGebSettings.recordingMode,
                 grailsGebSettings.recordingDirectory,
                 grailsGebSettings.recordingFormat
