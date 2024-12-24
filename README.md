@@ -94,6 +94,18 @@ By default, no test recording will be performed.  Various system properties exis
     * possible values are `FLV` or `MP4`
     * defaults to `MP4`
 
+#### Observability and Tracing
+Selenium integrates with [OpenTelemetry](https://opentelemetry.io) to support observability and tracing out of the box. By default, Selenium [enables tracing](https://www.selenium.dev/blog/2021/selenium-4-observability).
+
+This plugin, however, **disables tracing by default** since most setups lack an OpenTelemetry collector to process the traces.
+
+To enable tracing, set the following system property:
+* `grails.geb.tracing.enabled`
+  * possible values are `true` or `false`
+  * defaults to `false`
+  
+This allows you to opt in to tracing when an OpenTelemetry collector is available.
+
 ### GebSpec
 
 If you choose to extend `GebSpec`, you will need to have a [Selenium WebDriver](https://www.selenium.dev/documentation/webdriver/browsers/) installed that matches a browser you have installed on your system.

@@ -98,15 +98,13 @@ class WebDriverContainerHolder {
         }
 
         currentConfiguration = specConfiguration
-        currentContainer = new BrowserWebDriverContainer()
-        if (grailsGebSettings.recordingEnabled) {
-            currentContainer = currentContainer.withRecordingMode(
-                    grailsGebSettings.recordingMode,
-                    grailsGebSettings.recordingDirectory,
-                    grailsGebSettings.recordingFormat
-            )
-        }
+        currentContainer = new BrowserWebDriverContainer().withRecordingMode(
+                grailsGebSettings.recordingMode,
+                grailsGebSettings.recordingDirectory,
+                grailsGebSettings.recordingFormat
+        )
         currentContainer.tap {
+            withEnv('SE_ENABLE_TRACING', grailsGebSettings.tracingEnabled)
             withAccessToHost(true)
             start()
         }
