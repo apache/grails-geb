@@ -38,6 +38,7 @@ class GrailsGebSettings {
     private static VncRecordingMode DEFAULT_RECORDING_MODE = VncRecordingMode.SKIP
     private static VncRecordingFormat DEFAULT_RECORDING_FORMAT = VncRecordingFormat.MP4
 
+    String tracingEnabled
     String recordingDirectoryName
     String reportingDirectoryName
     VncRecordingMode recordingMode
@@ -45,6 +46,7 @@ class GrailsGebSettings {
     LocalDateTime startTime
 
     GrailsGebSettings(LocalDateTime startTime) {
+        tracingEnabled = System.getProperty('grails.geb.tracing.enabled', 'false')
         recordingDirectoryName = System.getProperty('grails.geb.recording.directory', 'build/gebContainer/recordings')
         reportingDirectoryName = System.getProperty('grails.geb.reporting.directory', 'build/gebContainer/reports')
         recordingMode = VncRecordingMode.valueOf(

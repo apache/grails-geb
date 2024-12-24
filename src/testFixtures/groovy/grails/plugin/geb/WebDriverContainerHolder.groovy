@@ -104,6 +104,7 @@ class WebDriverContainerHolder {
                 grailsGebSettings.recordingFormat
         )
         currentContainer.tap {
+            withEnv('SE_ENABLE_TRACING', grailsGebSettings.tracingEnabled)
             withAccessToHost(true)
             start()
         }
