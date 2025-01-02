@@ -12,7 +12,7 @@ jobs:
     name: "Build Project"
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-24.04] # windows-latest and macos-latest do not provide a container environment
     runs-on: ${{ matrix.os }}
     steps:
       - name: "📥 Checkout repository"
