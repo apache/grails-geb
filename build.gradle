@@ -93,10 +93,8 @@ java {
 }
 
 tasks.withType(GroovyCompile).configureEach {
-    // Preserve method parameter names in compiled Groovy classes
-    // IDE support for parameter hints
-    options.debug = true
-    options.compilerArgs << '--parameters'
+    // Preserve method parameter names in Groovy classes for IDE parameter hints.
+    groovyOptions.parameters = true
 }
 
 tasks.named('bootRun') { enabled = false }
