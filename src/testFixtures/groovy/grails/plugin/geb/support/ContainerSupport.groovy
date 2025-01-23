@@ -19,6 +19,7 @@ import geb.download.DownloadSupport
 import grails.plugin.geb.ContainerGebSpec
 import groovy.transform.CompileStatic
 import groovy.transform.SelfType
+import org.testcontainers.containers.BrowserWebDriverContainer
 import org.testcontainers.images.builder.Transferable
 import spock.lang.Shared
 
@@ -32,8 +33,22 @@ import spock.lang.Shared
 @SelfType(ContainerGebSpec)
 trait ContainerSupport implements DownloadSupport {
 
+    /**
+     * Get access to container running the web-driver, for convenience to execInContainer, copyFileToContainer etc.
+     *
+     * @see org.testcontainers.containers.ContainerState#execInContainer(java.lang.String ...)
+     * @see org.testcontainers.containers.ContainerState#copyFileToContainer(org.testcontainers.utility.MountableFile, java.lang.String)
+     * @see org.testcontainers.containers.ContainerState#copyFileFromContainer(java.lang.String, java.lang.String)
+     * @see org.testcontainers.containers.ContainerState
+     */
     @Shared
-    @Delegate
+    static BrowserWebDriverContainer container
+
+    static void setContainer(BrowserWebDriverContainer container) {
+        this.container = container
+    }
+
+    @Shared
     static DownloadSupport downloadSupport
 
     /**

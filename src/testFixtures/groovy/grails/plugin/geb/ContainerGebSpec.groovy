@@ -15,15 +15,14 @@
  */
 package grails.plugin.geb
 
-import geb.Browser
-import geb.Page
-import geb.report.CompositeReporter
-import geb.report.PageSourceReporter
-import geb.report.Reporter
 import geb.test.GebTestManager
-import geb.transform.DynamicallyDispatchesToBrowser
 import grails.plugin.geb.support.ContainerSupport
-import org.testcontainers.containers.BrowserWebDriverContainer
+import grails.plugin.geb.support.ReportingSupport
+import grails.plugin.geb.support.delegate.BrowserDelegate
+import grails.plugin.geb.support.delegate.DownloadSupportDelegate
+import grails.plugin.geb.support.delegate.DriverDelegate
+import grails.plugin.geb.support.delegate.PageDelegate
+import groovy.transform.CompileStatic
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -48,53 +47,13 @@ import spock.lang.Specification
  * @author James Daugherty
  * @since 4.1
  */
-@DynamicallyDispatchesToBrowser
-abstract class ContainerGebSpec extends Specification implements ContainerSupport {
-
-    /**
-     * Get access to container running the web-driver, for convenience to execInContainer, copyFileToContainer etc.
-     *
-     * @see org.testcontainers.containers.ContainerState#execInContainer(java.lang.String ...)
-     * @see org.testcontainers.containers.ContainerState#copyFileToContainer(org.testcontainers.utility.MountableFile, java.lang.String)
-     * @see org.testcontainers.containers.ContainerState#copyFileFromContainer(java.lang.String, java.lang.String)
-     * @see org.testcontainers.containers.ContainerState
-     */
-    @Shared
-    static BrowserWebDriverContainer container
+@CompileStatic
+abstract class ContainerGebSpec extends Specification implements ContainerSupport, ReportingSupport, BrowserDelegate, PageDelegate, DriverDelegate, DownloadSupportDelegate {
 
     @Shared
     static GebTestManager testManager
 
-    @Delegate(interfaces = false)
-    Page getPage() {
-        testManager.browser.page
-    }
-
-    @Delegate
-    Browser getBrowser() {
-        testManager.browser
-    }
-
-    void report(String message) {
-        testManager.report(message)
-    }
-
-    String getPageSource() {
-        testManager.browser.driver.pageSource
-    }
-
     static void setTestManager(GebTestManager testManager) {
         this.testManager = testManager
-    }
-
-    static void setContainer(BrowserWebDriverContainer container) {
-        this.container = container
-    }
-
-    /**
-     * The reporter that Geb should use when reporting is enabled.
-     */
-    Reporter createReporter() {
-        new CompositeReporter(new PageSourceReporter())
     }
 }
