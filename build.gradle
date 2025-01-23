@@ -80,11 +80,11 @@ tasks.withType(Groovydoc).configureEach {
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
     testLogging {
-        events 'passed', 'skipped', 'failed'
-        showExceptions true
-        exceptionFormat 'full'
-        showCauses true
-        showStackTraces true
+      events('passed', 'skipped', 'failed')
+        showExceptions = true
+        exceptionFormat = 'full'
+        showCauses = true
+        showStackTraces = true
     }
 }
 
