@@ -27,7 +27,7 @@ import spock.lang.Shared
  * Features for supporting Geb tests running in a container.
  *
  * @author Mattias Reichel
- * @since 4.1
+ * @since 4.2
  */
 @CompileStatic
 @SelfType(ContainerGebSpec)
