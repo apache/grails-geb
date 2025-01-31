@@ -8,7 +8,7 @@ buildscript {
 }
 
 plugins {
-    id 'com.github.ben-manes.versions' version '0.51.0'
+    id 'com.github.ben-manes.versions' version '0.52.0'
 }
 
 version = projectVersion
@@ -84,7 +84,7 @@ grailsPublish {
 
 tasks.withType(Groovydoc).configureEach {
     destinationDir = layout.buildDirectory.dir('docs/api').get().asFile
-    docTitle = "Grails Geb Plugin ${version}"
+    docTitle = "Grails Geb Plugin $version"
     classpath = configurations.documentation
     source = files(source, sourceSets.testFixtures.allSource)
 }
@@ -92,15 +92,19 @@ tasks.withType(Groovydoc).configureEach {
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
     testLogging {
-        events 'passed', 'skipped', 'failed'
-        showExceptions true
-        exceptionFormat 'full'
-        showCauses true
-        showStackTraces true
+        events('passed', 'skipped', 'failed')
+        showExceptions = true
+        exceptionFormat = 'full'
+        showCauses = true
+        showStackTraces = true
     }
 }
 
-tasks.named('bootJar') { enabled = false }
+tasks.withType(GroovyCompile).configureEach {
+    // Preserve method parameter names in Groovy classes for IDE parameter hints.
+    groovyOptions.parameters = true
+}
+
 tasks.named('bootRun') { enabled = false }
 tasks.named('bootTestRun') { enabled = false }
 tasks.named('findMainClass') { enabled = false }

@@ -12,38 +12,38 @@ class UploadSpec extends ContainerGebSpec {
     @Requires({ os.windows })
     void 'should be able to upload files on a Windows host'() {
         given:
-        to UploadPage
+        def uploadPage = to UploadPage
 
         when:
-        fileInput.file = createFileInputSource(
+        uploadPage.fileInput.file = createFileInputSource(
                 'src/integration-test/resources/assets/upload-test.txt',
                 '/tmp/upload-test.txt'
         )
 
         and:
-        submitBtn.click()
+        uploadPage.submitBtn.click()
 
         then:
         title == 'File Uploaded'
-        browser.pageSource.contains('File uploaded successfully')
+        pageSource.contains('File uploaded successfully')
     }
 
     @IgnoreIf({ os.windows })
     void 'should be able to upload files on a non-Windows host'() {
         given:
-        to UploadPage
+        def uploadPage = to UploadPage
 
         when:
-        fileInput.file = createFileInputSource(
+        uploadPage.fileInput.file = createFileInputSource(
                 'src/integration-test/resources/assets/upload-test.txt',
                 '/tmp/upload-test.txt'
         )
 
         and:
-        submitBtn.click()
+        uploadPage.submitBtn.click()
 
         then:
         title == 'File Uploaded'
-        browser.driver.pageSource.contains('File uploaded successfully')
+        pageSource.contains('File uploaded successfully')
     }
 }

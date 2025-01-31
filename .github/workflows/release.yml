@@ -19,11 +19,11 @@ jobs:
       - name: "🐘 Setup Gradle"
         uses: gradle/actions/setup-gradle@v4
         with:
-          develocity-access-key: ${{ secrets.GRADLE_ENTERPRISE_ACCESS_KEY }}
+          develocity-access-key: ${{ secrets.DEVELOCITY_ACCESS_KEY }}
       - name: "📝 Store the current release version"
         id: release_version
         run: echo "release_version=${GITHUB_REF:11}" >> $GITHUB_OUTPUT
-      - name: "⚙ Run pre-release"
+      - name: "⚙️ Run pre-release"
         uses: grails/github-actions/pre-release@main
       - name: "🔐 Generate key file for artifact signing"
         env:
@@ -38,13 +38,13 @@ jobs:
           NEXUS_PUBLISH_STAGING_PROFILE_ID: ${{ secrets.NEXUS_PUBLISH_STAGING_PROFILE_ID }}
           SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
           SIGNING_PASSPHRASE: ${{ secrets.SIGNING_PASSPHRASE }}
-          SECRING_FILE: ${{ secrets.SECRING_FILE }}
           GITHUB_MAVEN_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         run: >
           ./gradlew
-          -Psigning.secretKeyRingFile=${{ github.workspace }}/secring.gpg
           publishToSonatype
           closeAndReleaseSonatypeStagingRepository
+          --no-build-cache
+          -Psigning.secretKeyRingFile=${{ github.workspace }}/secring.gpg
       - name: "📖 Generate Documentation"
         id: docs
         if: steps.publish.outcome == 'success'

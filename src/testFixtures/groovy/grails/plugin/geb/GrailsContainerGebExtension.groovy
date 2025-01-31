@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 original author or authors
+ * Copyright 2024-2025 original author or authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package grails.plugin.geb
 
+import grails.plugin.geb.support.LocalhostDownloadSupport
 import grails.testing.mixin.integration.Integration
 import groovy.transform.CompileStatic
 import groovy.transform.TailRecursive

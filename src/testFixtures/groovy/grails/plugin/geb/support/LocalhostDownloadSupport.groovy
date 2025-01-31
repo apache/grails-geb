@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 original author or authors
+ * Copyright 2024-2025 original author or authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,12 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package grails.plugin.geb
+package grails.plugin.geb.support
 
 import geb.Browser
 import geb.download.DefaultDownloadSupport
 import groovy.transform.CompileStatic
-import groovy.transform.PackageScope
 
 import java.util.regex.Pattern
 
@@ -26,7 +25,6 @@ import java.util.regex.Pattern
  * @author Mattias Reichel
  * @since 4.1
  */
-@PackageScope
 @CompileStatic
 class LocalhostDownloadSupport extends DefaultDownloadSupport {
 
