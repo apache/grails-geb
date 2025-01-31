@@ -25,7 +25,7 @@ class UploadSpec extends ContainerGebSpec {
 
         then:
         title == 'File Uploaded'
-        browser.pageSource.contains('File uploaded successfully')
+        browser.driver.pageSource.contains('File uploaded successfully')
     }
 
     @IgnoreIf({ os.windows })
