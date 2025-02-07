@@ -16,6 +16,7 @@
 package grails.plugin.geb
 
 import com.github.dockerjava.api.model.ContainerNetwork
+import com.google.common.collect.ImmutableSet
 import geb.Browser
 import geb.Configuration
 import geb.spock.SpockGebTestManagerBuilder
@@ -24,6 +25,7 @@ import groovy.transform.CompileStatic
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.PackageScope
 import groovy.util.logging.Slf4j
+import org.jetbrains.annotations.NotNull
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeOptions
 import org.openqa.selenium.remote.RemoteWebDriver
@@ -31,6 +33,7 @@ import org.spockframework.runtime.extension.IMethodInvocation
 import org.spockframework.runtime.model.SpecInfo
 import org.testcontainers.Testcontainers
 import org.testcontainers.containers.BrowserWebDriverContainer
+import org.testcontainers.containers.Network
 import org.testcontainers.containers.PortForwardingContainer
 
 import java.time.Duration
@@ -98,11 +101,12 @@ class WebDriverContainerHolder {
         }
 
         currentConfiguration = specConfiguration
-        currentContainer = new BrowserWebDriverContainer().withRecordingMode(
-                grailsGebSettings.recordingMode,
-                grailsGebSettings.recordingDirectory,
-                grailsGebSettings.recordingFormat
-        )
+
+        // Recording needs to be restarted after every test, so do the configuration in the listener
+        currentContainer = new GrailsBrowserWebDriverContainer(grailsGebSettings.recordingMode)
+        .withRecordingMode(BrowserWebDriverContainer.VncRecordingMode.SKIP, null)
+        .withNetwork(Network.SHARED) as BrowserWebDriverContainer
+
         currentContainer.tap {
             withEnv('SE_ENABLE_TRACING', grailsGebSettings.tracingEnabled)
             withAccessToHost(true)
@@ -212,3 +216,33 @@ class WebDriverContainerHolder {
     }
 }
 
+/**
+ * The only reason this class exists is so we can set the correct liveness ports so the container isn't considered started
+ * until both the selenium server & vnc server are running
+ */
+class GrailsBrowserWebDriverContainer<SELF extends GrailsBrowserWebDriverContainer<SELF>>
+        extends BrowserWebDriverContainer<SELF> {
+    private BrowserWebDriverContainer.VncRecordingMode recordingMode
+
+    GrailsBrowserWebDriverContainer(BrowserWebDriverContainer.VncRecordingMode recordingMode) {
+        // parent recording mode will be set to skip, this is here to just expose the correct liveness check
+        this.recordingMode = recordingMode
+    }
+
+    // Must override to ensure the container isn't considered "ready" until it's vnc server is
+    @NotNull
+    @Override
+    protected Set<Integer> getLivenessCheckPorts() {
+        Integer seleniumPort = getMappedPort(4444) // selenium port
+        if (recordingMode == BrowserWebDriverContainer.VncRecordingMode.SKIP) {
+            return ImmutableSet.of(seleniumPort);
+        } else {
+            return ImmutableSet.of(seleniumPort, getMappedPort(5900)) // VNC port
+        }
+    }
+
+    // This is likely a groovy bug, should not be required since there's a default implementation on Startable
+    void close() {
+        stop()
+    }
+}

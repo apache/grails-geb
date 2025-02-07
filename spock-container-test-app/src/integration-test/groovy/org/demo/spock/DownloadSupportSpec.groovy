@@ -13,4 +13,12 @@ class DownloadSupportSpec extends ContainerGebSpec {
         then:
         downloadText().contains('Welcome to Grails')
     }
+
+    void 'should display the correct title on the home page'() {
+        when: 'visiting the home page'
+        go '/'
+
+        then: 'the page title is correct'
+        title == 'Welcome to Grails'
+    }
 }
