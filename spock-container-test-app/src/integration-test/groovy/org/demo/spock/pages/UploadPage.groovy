@@ -12,4 +12,8 @@ class UploadPage extends Page {
         fileInput { $('input', name: 'myFile').module(FileInput) }
         submitBtn { $('input', type: 'submit') }
     }
+
+    void nop() {
+        // no-op
+    }
 }
