@@ -240,15 +240,17 @@ trait BrowserDelegate {
     }
 
     @CompileDynamic
-    void methodMissing(String name, Object[] args) {
-        browser[name](*args)
+    def methodMissing(String name, args) {
+        browser.page."$name"(*args)
     }
 
-    void propertyMissing(String name, Object value) {
-        browser[name] = value
+    @CompileDynamic
+    def propertyMissing(String name) {
+        browser.page."$name"
     }
 
-    Object propertyMissing(String name) {
-        browser[name]
+    @CompileDynamic
+    def propertyMissing(String name, value) {
+        browser.page."$name" = value
     }
 }
