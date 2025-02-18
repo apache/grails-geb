@@ -51,6 +51,20 @@ trait BrowserDelegate {
         browser.driver
     }
 
+    /**
+     * Delegates to {@link geb.Browser#getCurrentUrl()}.
+     */
+    String getCurrentUrl() {
+        browser.currentUrl
+    }
+
+    /**
+     * Delegates to {@link geb.Browser#getPage()}.
+     */
+    Page getPage() {
+        browser.page
+    }
+
     <T extends Page> T at(Class<T> pageType) {
         browser.at(pageType)
     }
