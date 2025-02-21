@@ -19,6 +19,6 @@ class FileNameSpec extends ContainerGebSpec {
         where:
         data_driven_testing_param_1 << ["very long text lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet Liskov Substitution"]
         param_2 << ["If an implementation is hard to explain, it is an established design pattern."]
-        param_3 << [Integer.MAX_VALUE]
+        param_3 << Integer.MAX_VALUE
     }
 }
