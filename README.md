@@ -87,6 +87,13 @@ By default, no test recording will be performed.  Here are the system properties
     * possible values are `FLV` or `MP4`
     * defaults to `MP4`
 
+To overwrite file naming convention, you need to create a class that extends the implements the interface [ContainerGebTestDescription](./src/testFixtures/groovy/grails/plugin/geb/ContainerGebTestDescription.groovy)
+and put its fully-qualified class name in a file `META-INF/services/org.spockframework.runtime.extension.IGlobalExtension`
+in the class path (for example, `src/integration-test/resources`).
+As soon as these two conditions are satisfied, the class is automatically loaded and used instead of the classes default behaviour.
+You may use said [DefaultContainerGebTestDescription](./src/testFixtures/groovy/grails/plugin/geb/DefaultContainerGebTestDescription.groovy)
+as a base class for your own implementation, and overwrite at minimum the `getTestId()` method to see a difference.
+
 #### Uploads
 
 Uploading a file is more complicated for Remote WebDriver sessions because the file you want to upload

@@ -20,26 +20,10 @@ import org.spockframework.runtime.model.IterationInfo
 import org.testcontainers.lifecycle.TestDescription
 
 /**
- * Implements {@link org.testcontainers.lifecycle.TestDescription} to customize recording names.
- *
- * @author James Daugherty
- * @since 4.1
+ * java.util.ServiceLoader Compatible Interface.
  */
 @CompileStatic
-class ContainerGebTestDescription implements TestDescription {
-
-    String testId
-    String filesystemFriendlyName
-
-    ContainerGebTestDescription(IterationInfo testInfo) {
-        testId = [
-                testInfo.feature.spec.displayName,
-                testInfo.feature.displayName,
-                testInfo.displayName != testInfo.feature.displayName ? testInfo.displayName : null,
-                testInfo.displayName != testInfo.feature.displayName ? testInfo.iterationIndex : null
-        ].findAll(/* Remove nulls */).join(' ')
-
-        String safeName = testId.replaceAll('\\W+', '_')
-        filesystemFriendlyName = safeName
-    }
+interface ContainerGebTestDescription extends TestDescription {
+    IterationInfo getTestInfo()
+    void setTestInfo(IterationInfo testInfo)
 }
