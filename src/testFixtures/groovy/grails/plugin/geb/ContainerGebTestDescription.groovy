@@ -20,7 +20,7 @@ import org.spockframework.runtime.model.IterationInfo
 import org.testcontainers.lifecycle.TestDescription
 
 /**
- * java.util.ServiceLoader Compatible Interface.
+ * java.util.ServiceLoader Compatible Interface ("must have a zero-argument constructor").
  */
 @CompileStatic
 interface ContainerGebTestDescription extends TestDescription {
