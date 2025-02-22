@@ -76,6 +76,11 @@ By default, no test recording will be performed.  Here are the system properties
     * possible values are `FLV` or `MP4`
     * defaults to `MP4`
 
+#### Uploads
+
+Uploading a file is more complicated for Remote WebDriver sessions because the file you want to upload is likely on the computer executing the code.
+By default, this plugin will set a Local File Detector.
+
 #### Observability and Tracing
 Selenium integrates with [OpenTelemetry](https://opentelemetry.io) to support observability and tracing out of the box. By default, Selenium [enables tracing](https://www.selenium.dev/blog/2021/selenium-4-observability).
 

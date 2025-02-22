@@ -26,6 +26,7 @@ import groovy.transform.PackageScope
 import groovy.util.logging.Slf4j
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeOptions
+import org.openqa.selenium.remote.LocalFileDetector
 import org.openqa.selenium.remote.RemoteWebDriver
 import org.spockframework.runtime.extension.IMethodInvocation
 import org.spockframework.runtime.model.SpecInfo
@@ -121,6 +122,7 @@ class WebDriverContainerHolder {
         currentBrowser = new Browser(new Configuration(configObject, new Properties(), null, null))
 
         WebDriver driver = new RemoteWebDriver(currentContainer.seleniumAddress, new ChromeOptions())
+        ((RemoteWebDriver) driver).setFileDetector(new LocalFileDetector())
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30))
 
         currentBrowser.driver = driver
