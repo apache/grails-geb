@@ -121,6 +121,9 @@ class WebDriverContainerHolder {
         if (currentConfiguration.fileDetector != NullContainerFileDetector) {
             ServiceRegistry.setInstance(ContainerFileDetector, currentConfiguration.fileDetector)
         }
+        if (currentConfiguration.testDescription != NullContainerGebTestDescription.class) {
+            ServiceRegistry.setInstance(ContainerGebTestDescription, currentConfiguration.testDescription)
+        }
 
         currentBrowser = new Browser(new Configuration(configObject, new Properties(), null, null))
 
@@ -210,6 +213,7 @@ class WebDriverContainerHolder {
         String hostName
         boolean reporting
         Class<? extends ContainerFileDetector> fileDetector
+        Class<? extends ContainerGebTestDescription> testDescription
 
         WebDriverContainerConfiguration(SpecInfo spec) {
             ContainerGebConfiguration configuration
@@ -228,6 +232,7 @@ class WebDriverContainerHolder {
             hostName = configuration?.hostName() ?: ContainerGebConfiguration.DEFAULT_HOSTNAME_FROM_CONTAINER
             reporting = configuration?.reporting() ?: false
             fileDetector = configuration?.fileDetector() ?: ContainerGebConfiguration.DEFAULT_FILE_DETECTOR
+            testDescription = configuration?.testDescription() ?: ContainerGebConfiguration.DEFAULT_TEST_DESCRIPTION
         }
     }
 }

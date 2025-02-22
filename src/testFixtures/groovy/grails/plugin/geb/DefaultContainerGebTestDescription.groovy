@@ -45,3 +45,10 @@ class DefaultContainerGebTestDescription implements ContainerGebTestDescription 
         return safeName
     }
 }
+
+/**
+ * Used by {@link ContainerGebConfiguration#testDescription()} interface to represent a null value.
+ */
+class NullContainerGebTestDescription extends DefaultContainerGebTestDescription {
+
+}

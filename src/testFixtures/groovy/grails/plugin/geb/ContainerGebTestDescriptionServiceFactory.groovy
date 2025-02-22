@@ -31,5 +31,11 @@ class ContainerGebTestDescriptionServiceFactory {
     static void setImplementation(ContainerGebTestDescription implementation) {
         this.implementation = implementation
     }
+    /**
+     * Class must have a zero-argument constructor (ServiceLoader Requirement).
+     */
+    static void setImplementation(Class<? extends ContainerGebTestDescription> implementation) {
+        this.implementation = implementation.getDeclaredConstructor().newInstance()
+    }
 }
 

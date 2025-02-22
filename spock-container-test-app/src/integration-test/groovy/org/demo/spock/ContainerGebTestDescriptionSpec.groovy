@@ -5,7 +5,7 @@ import grails.plugin.geb.ContainerGebTestDescriptionServiceFactory
 import grails.testing.mixin.integration.Integration
 
 @Integration
-class FileNameSpec extends ContainerGebSpec {
+class ContainerGebTestDescriptionSpec extends ContainerGebSpec {
 
     def setupSpec(){
         ContainerGebTestDescriptionServiceFactory.setImplementation(new ContainerGebTestDescriptionImpl())

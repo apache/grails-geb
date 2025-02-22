@@ -97,8 +97,9 @@ Once both conditions are met, the class is automatically loaded and replaces the
 You may extend the default implementation, [`DefaultContainerGebTestDescription`](./src/testFixtures/groovy/grails/plugin/geb/DefaultContainerGebTestDescription.groovy), as a base for your custom implementation. 
 To modify the naming convention, override at least the `getTestId()` method.
 
-Optionally, in specific test classes, use [`ContainerGebTestDescriptionServiceFactory.setImplementation()`](./src/testFixtures/groovy/grails/plugin/geb/ContainerGebTestDescriptionServiceFactory.groovy)
-in a Spock `setupSpec` method to apply your naming convention. Use a `cleanupSpec` to limit this to one class.
+Optionally, in specific test classes, either call [`ContainerGebTestDescriptionServiceFactory.setImplementation()`](./src/testFixtures/groovy/grails/plugin/geb/ContainerGebTestDescriptionServiceFactory.groovy)
+in a Spock `setupSpec` method to apply your naming convention (And use a `cleanupSpec` to limit this to one class),
+or set the `testDescription` Property on your ContainerGebConfiguration annotation.
 
 #### Uploads
 

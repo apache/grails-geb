@@ -35,6 +35,7 @@ import java.lang.annotation.Target
     static final String DEFAULT_HOSTNAME_FROM_CONTAINER = GenericContainer.INTERNAL_HOST_HOSTNAME
     static final String DEFAULT_PROTOCOL = 'http'
     static final Class<? extends ContainerFileDetector> DEFAULT_FILE_DETECTOR = DefaultContainerFileDetector
+    static final Class<? extends ContainerGebTestDescription> DEFAULT_TEST_DESCRIPTION = NullContainerGebTestDescription
 
     /**
      * The protocol that the container's browser will use to access the server under test.
@@ -64,6 +65,13 @@ import java.lang.annotation.Target
      * @see grails.plugin.geb.UselessContainerFileDetector UselessContainerFileDetector
      */
     Class<? extends ContainerFileDetector> fileDetector() default DefaultContainerFileDetector
+
+    /**
+     * The {@link org.testcontainers.lifecycle.TestDescription} implementation to use for this class.
+     * <p> {@link NullContainerGebTestDescription} results in the
+     *     {@link ContainerGebTestDescriptionServiceFactory last set} implementation being used.
+     */
+    Class<? extends ContainerGebTestDescription> testDescription() default NullContainerGebTestDescription
 }
 
 /**
@@ -87,5 +95,9 @@ interface IContainerGebConfiguration {
 
     default Class<? extends ContainerFileDetector> fileDetector() {
         ContainerGebConfiguration.DEFAULT_FILE_DETECTOR
+    }
+    
+    default Class<? extends ContainerFileDetector> testDescription() {
+        ContainerGebConfiguration.DEFAULT_TEST_DESCRIPTION
     }
 }
