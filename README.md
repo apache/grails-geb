@@ -89,13 +89,15 @@ By default, no test recording will be performed.  Here are the system properties
 
 To customize the naming convention for recording files:
 
-1. Create a class that implements ContainerGebTestDescription. 
+1. Create a class that implements [`ContainerGebTestDescription`](./src/testFixtures/groovy/grails/plugin/geb/ContainerGebTestDescription.groovy). 
 2. Specify its fully qualified class name in a `META-INF/services/grails.plugin.geb.ContainerGebTestDescription` file
    on the classpath (e.g., `src/integration-test/resources`).
 
-Once both conditions are met, the class is automatically loaded and replaces the default behavior.
-
+Once both conditions are met, the class is automatically loaded and replaces the default behavior. +
 You may extend the default implementation, [`DefaultContainerGebTestDescription`](./src/testFixtures/groovy/grails/plugin/geb/DefaultContainerGebTestDescription.groovy), as a base for your custom implementation. To modify the naming convention, override at least the getTestId() method.
+
+Optionally, in specific test classes, use [`ContainerGebTestDescriptionServiceFactory.setImplementation()`](./src/testFixtures/groovy/grails/plugin/geb/ContainerGebTestDescriptionServiceFactory.groovy)
+in a Spock `setupSpec` method to apply your naming convention. Use a `cleanupSpec` to limit this to one class.
 
 #### Uploads
 

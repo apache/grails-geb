@@ -17,6 +17,9 @@ package grails.plugin.geb
 
 import groovy.transform.CompileStatic
 
+/**
+ * ServiceLoader (META-INF) Loader that allows programmatic overwriting.
+ */
 @CompileStatic
 class ContainerGebTestDescriptionServiceFactory {
     private static ContainerGebTestDescription implementation = null
