@@ -89,7 +89,7 @@ class GrailsGebSettings {
 
         File reportingDirectory = new File("${reportingDirectoryName}${File.separator}${DateTimeFormatter.ofPattern('yyyyMMdd_HHmmss').format(startTime)}")
         if (!reportingDirectory.exists()) {
-            if(!reportingDirectory.parentFile.exists()) {
+            if (!reportingDirectory.parentFile.exists()) {
                 log.info('Could not find `{}` Directory for reporting. Creating...', reportingDirectoryName)
             }
             reportingDirectory.mkdirs()
