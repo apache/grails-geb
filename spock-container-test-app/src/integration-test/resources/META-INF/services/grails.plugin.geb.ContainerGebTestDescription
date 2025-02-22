@@ -1,1 +1,1 @@
-org.demo.spock.ContainerGebTestDescriptionImpl
+grails.plugin.geb.DefaultContainerGebTestDescription
