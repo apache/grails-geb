@@ -70,8 +70,8 @@ class GrailsGebSettings {
 
         File recordingDirectory = new File("${recordingDirectoryName}${File.separator}${DateTimeFormatter.ofPattern('yyyyMMdd_HHmmss').format(startTime)}")
         if (!recordingDirectory.exists()) {
-            if (!recordingDirectory.parentFile.exists()){
-                log.info("Could not find '${recordingDirectoryName}' Directory for recording. Creating...")
+            if (!recordingDirectory.parentFile.exists()) {
+                log.info('Could not find `{}` Directory for recording. Creating...', recordingDirectoryName)
             }
             recordingDirectory.mkdirs()
         } else if (!recordingDirectory.isDirectory()) {
@@ -89,8 +89,8 @@ class GrailsGebSettings {
 
         File reportingDirectory = new File("${reportingDirectoryName}${File.separator}${DateTimeFormatter.ofPattern('yyyyMMdd_HHmmss').format(startTime)}")
         if (!reportingDirectory.exists()) {
-            if(!reportingDirectory.parentFile.exists()){
-                log.info("Could not find '${reportingDirectoryName}' Directory for reporting. Creating...")
+            if(!reportingDirectory.parentFile.exists()) {
+                log.info('Could not find `{}` Directory for reporting. Creating...', reportingDirectoryName)
             }
             reportingDirectory.mkdirs()
         } else if (!reportingDirectory.isDirectory()) {
