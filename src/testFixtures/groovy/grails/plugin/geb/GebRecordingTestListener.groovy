@@ -41,7 +41,7 @@ class GebRecordingTestListener extends AbstractRunListener {
 
     @Override
     void afterIteration(IterationInfo iteration) {
-        final ContainerGebTestDescription testContainerDescription = ServiceLoader.load(ContainerGebTestDescription.class).findFirst().orElse(new DefaultContainerGebTestDescription())
+        final ContainerGebTestDescription testContainerDescription = ContainerGebTestDescriptionServiceFactory.getImplementation()
         testContainerDescription.testInfo = iteration
 
         containerHolder.currentContainer.afterTest(

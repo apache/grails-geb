@@ -1,10 +1,15 @@
 package org.demo.spock
 
 import grails.plugin.geb.ContainerGebSpec
+import grails.plugin.geb.ContainerGebTestDescriptionServiceFactory
 import grails.testing.mixin.integration.Integration
 
 @Integration
 class FileNameSpec extends ContainerGebSpec {
+
+    def setupSpec(){
+        ContainerGebTestDescriptionServiceFactory.setImplementation(new ContainerGebTestDescriptionImpl())
+    }
 
     /**
      * "The filename, directory name, or volume label syntax is incorrect" (too long)
@@ -20,5 +25,9 @@ class FileNameSpec extends ContainerGebSpec {
         data_driven_testing_param_1 << ["very long text lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet Liskov Substitution"]
         param_2 << ["If an implementation is hard to explain, it is an established design pattern."]
         param_3 << Integer.MAX_VALUE
+    }
+
+    def cleanupSpec(){
+        ContainerGebTestDescriptionServiceFactory.setImplementation(null)
     }
 }
