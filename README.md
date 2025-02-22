@@ -87,12 +87,15 @@ By default, no test recording will be performed.  Here are the system properties
     * possible values are `FLV` or `MP4`
     * defaults to `MP4`
 
-To overwrite file naming convention, you need to create a class that extends the implements the interface [ContainerGebTestDescription](./src/testFixtures/groovy/grails/plugin/geb/ContainerGebTestDescription.groovy)
-and put its fully-qualified class name in a file `META-INF/services/org.spockframework.runtime.extension.IGlobalExtension`
-in the class path (for example, `src/integration-test/resources`).
-As soon as these two conditions are satisfied, the class is automatically loaded and used instead of the classes default behaviour.
-You may use said [DefaultContainerGebTestDescription](./src/testFixtures/groovy/grails/plugin/geb/DefaultContainerGebTestDescription.groovy)
-as a base class for your own implementation, and overwrite at minimum the `getTestId()` method to see a difference.
+To customize the naming convention for recording files:
+
+1. Create a class that implements ContainerGebTestDescription. 
+2. Specify its fully qualified class name in a `META-INF/services/grails.plugin.geb.ContainerGebTestDescription` file
+   on the classpath (e.g., `src/integration-test/resources`).
+
+Once both conditions are met, the class is automatically loaded and replaces the default behavior.
+
+You may extend the default implementation, [`DefaultContainerGebTestDescription`](./src/testFixtures/groovy/grails/plugin/geb/DefaultContainerGebTestDescription.groovy), as a base for your custom implementation. To modify the naming convention, override at least the getTestId() method.
 
 #### Uploads
 
