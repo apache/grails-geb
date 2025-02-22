@@ -5,6 +5,6 @@ import grails.plugin.geb.DefaultContainerGebTestDescription
 class ContainerGebTestDescriptionImpl extends DefaultContainerGebTestDescription {
     @Override
     String getTestId() {
-        return testInfo.feature.spec.displayName
+        return "Custom_" + testInfo.feature.spec.displayName
     }
 }
