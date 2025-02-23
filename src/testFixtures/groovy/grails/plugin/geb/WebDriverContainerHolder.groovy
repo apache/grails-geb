@@ -121,7 +121,9 @@ class WebDriverContainerHolder {
         currentBrowser = new Browser(new Configuration(configObject, new Properties(), null, null))
 
         WebDriver driver = new RemoteWebDriver(currentContainer.seleniumAddress, new ChromeOptions())
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30))
+        if (grailsGebSettings.implicitWait > 0) {
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30))
+        }
 
         currentBrowser.driver = driver
 

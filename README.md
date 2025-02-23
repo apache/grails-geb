@@ -76,6 +76,13 @@ By default, no test recording will be performed.  Here are the system properties
     * possible values are `FLV` or `MP4`
     * defaults to `MP4`
 
+#### Remove Implicit Wait
+
+* `grails.geb.implicit_wait`
+  * purpose: test-containers edge case  
+  * defaults to `30` (seconds) 
+
+
 #### Observability and Tracing
 Selenium integrates with [OpenTelemetry](https://opentelemetry.io) to support observability and tracing out of the box. By default, Selenium [enables tracing](https://www.selenium.dev/blog/2021/selenium-4-observability).
 
