@@ -19,7 +19,7 @@ class RootPageSpec extends ContainerGebSpec {
     @Override
     Reporter createReporter() {
         // Override the default reporter to demonstrate how this can be customized
-        new CompositeReporter(new ScreenshotReporter(), new PageSourceReporter())
+        new CompositeReporter(new PageSourceReporter())
     }
 
     void 'should display the correct title on the home page'() {
