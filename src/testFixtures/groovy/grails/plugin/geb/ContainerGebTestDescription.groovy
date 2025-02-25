@@ -36,6 +36,13 @@ interface ContainerGebTestDescription extends TestDescription {
      */
     void setIterationInfo(IterationInfo iterationInfo)
 
+    /**
+     * Will be used by
+     * {@link org.testcontainers.containers.BrowserWebDriverContainer#afterTest(org.testcontainers.lifecycle.TestDescription, java.util.Optional)}
+     *
+     * You could overwrite {@link ErrorInfo#getException()} to mimic that an Exception occurred, resulting in a recording file
+     * if {@link org.testcontainers.containers.BrowserWebDriverContainer#recordingMode} is RECORD_FAILING.
+     */
     @Nullable
     ErrorInfo getErrorInfo()
     /**

@@ -47,7 +47,7 @@ class GebRecordingTestListener extends AbstractRunListener {
 
         containerHolder.currentContainer.afterTest(
                 testContainerDescription,
-                Optional.ofNullable(errorInfo?.exception)
+                Optional.ofNullable(testContainerDescription.errorInfo?.exception)
         )
         errorInfo = null
     }
