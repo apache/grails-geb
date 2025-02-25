@@ -24,6 +24,10 @@ import org.testcontainers.lifecycle.TestDescription
  */
 @CompileStatic
 interface ContainerGebTestDescription extends TestDescription {
-    IterationInfo getTestInfo()
-    void setTestInfo(IterationInfo testInfo)
+    IterationInfo getIterationInfo()
+    /**
+     * Will be set to value of
+     * {@link org.spockframework.runtime.IRunListener#afterIteration(org.spockframework.runtime.model.IterationInfo)}
+     */
+    void setIterationInfo(IterationInfo iterationInfo)
 }

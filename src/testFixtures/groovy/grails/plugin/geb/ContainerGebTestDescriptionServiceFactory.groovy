@@ -22,7 +22,7 @@ import groovy.transform.CompileStatic
  */
 @CompileStatic
 class ContainerGebTestDescriptionServiceFactory {
-    private static ContainerGebTestDescription implementation = null
+    private static ContainerGebTestDescription implementation
 
     static ContainerGebTestDescription getImplementation() {
         return implementation ?: ServiceLoader.load(ContainerGebTestDescription).findFirst().orElse(new DefaultContainerGebTestDescription())
@@ -35,7 +35,7 @@ class ContainerGebTestDescriptionServiceFactory {
      * Class must have a zero-argument constructor (ServiceLoader Requirement).
      */
     static void setImplementation(Class<? extends ContainerGebTestDescription> implementation) {
-        this.implementation = implementation.getDeclaredConstructor().newInstance()
+        setImplementation(implementation.getDeclaredConstructor().newInstance())
     }
 }
 

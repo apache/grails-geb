@@ -27,15 +27,15 @@ import org.spockframework.runtime.model.IterationInfo
 @CompileStatic
 class DefaultContainerGebTestDescription implements ContainerGebTestDescription {
 
-    IterationInfo testInfo
+    IterationInfo iterationInfo
 
     @Override
     String getTestId() {
         return [
-            testInfo.feature.spec.displayName,
-            testInfo.feature.displayName,
-            testInfo.displayName != testInfo.feature.displayName ? testInfo.displayName : null,
-            testInfo.displayName != testInfo.feature.displayName ? testInfo.iterationIndex : null
+                iterationInfo.feature.spec.displayName,
+                iterationInfo.feature.displayName,
+                iterationInfo.displayName != iterationInfo.feature.displayName ? iterationInfo.displayName : null,
+                iterationInfo.displayName != iterationInfo.feature.displayName ? iterationInfo.iterationIndex : null
         ].findAll(/* Remove nulls */).join(' ')
     }
 
