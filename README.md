@@ -78,7 +78,7 @@ By default, no test recording will be performed.  Here are the system properties
 
 #### Remove Implicit Wait
 
-* `grails.geb.implicit_wait`
+* `grails.geb.implicitWait`
   * purpose: test-containers edge case  
   * defaults to `30` (seconds) 
 

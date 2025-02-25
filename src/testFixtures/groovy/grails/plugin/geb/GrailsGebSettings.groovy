@@ -57,7 +57,7 @@ class GrailsGebSettings {
                 System.getProperty('grails.geb.recording.format', DEFAULT_RECORDING_FORMAT.name())
         )
         try {
-            implicitWait = Integer.parseInt(System.getProperty('grails.geb.implicit_wait', '30'))
+            implicitWait = Integer.parseInt(System.getProperty('grails.geb.implicitWait', '30'))
         } catch (NumberFormatException ignored) {
             implicitWait = 30
         }
