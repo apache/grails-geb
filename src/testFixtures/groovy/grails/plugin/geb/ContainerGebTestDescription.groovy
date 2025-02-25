@@ -16,11 +16,16 @@
 package grails.plugin.geb
 
 import groovy.transform.CompileStatic
+import org.spockframework.runtime.model.ErrorInfo
 import org.spockframework.runtime.model.IterationInfo
 import org.testcontainers.lifecycle.TestDescription
 
+import javax.annotation.Nullable
+
 /**
- * java.util.ServiceLoader Compatible Interface ("must have a zero-argument constructor").
+ * java.util.ServiceLoader Compatible Interface ("must have a zero-argument constructor")
+ *
+ * @see GebRecordingTestListener
  */
 @CompileStatic
 interface ContainerGebTestDescription extends TestDescription {
@@ -30,4 +35,12 @@ interface ContainerGebTestDescription extends TestDescription {
      * {@link org.spockframework.runtime.IRunListener#afterIteration(org.spockframework.runtime.model.IterationInfo)}
      */
     void setIterationInfo(IterationInfo iterationInfo)
+
+    @Nullable
+    ErrorInfo getErrorInfo()
+    /**
+     * Will be set to value of
+     * {@link org.spockframework.runtime.IRunListener#error(org.spockframework.runtime.model.ErrorInfo)}
+     */
+    void setErrorInfo(ErrorInfo errorInfo)
 }

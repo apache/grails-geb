@@ -16,6 +16,7 @@
 package grails.plugin.geb
 
 import groovy.transform.CompileStatic
+import org.spockframework.runtime.model.ErrorInfo
 import org.spockframework.runtime.model.IterationInfo
 
 /**
@@ -28,6 +29,7 @@ import org.spockframework.runtime.model.IterationInfo
 class DefaultContainerGebTestDescription implements ContainerGebTestDescription {
 
     IterationInfo iterationInfo
+    ErrorInfo errorInfo
 
     @Override
     String getTestId() {
