@@ -37,6 +37,7 @@ class GrailsGebSettings {
 
     private static VncRecordingMode DEFAULT_RECORDING_MODE = VncRecordingMode.SKIP
     private static VncRecordingFormat DEFAULT_RECORDING_FORMAT = VncRecordingFormat.MP4
+    private static int DEFAULT_IMPLICIT_WAIT = 30
 
     String tracingEnabled
     String recordingDirectoryName
@@ -44,7 +45,7 @@ class GrailsGebSettings {
     VncRecordingMode recordingMode
     VncRecordingFormat recordingFormat
     LocalDateTime startTime
-    Integer implicitWait
+    int implicitWait
 
     GrailsGebSettings(LocalDateTime startTime) {
         tracingEnabled = System.getProperty('grails.geb.tracing.enabled', 'false')
@@ -57,9 +58,9 @@ class GrailsGebSettings {
                 System.getProperty('grails.geb.recording.format', DEFAULT_RECORDING_FORMAT.name())
         )
         try {
-            implicitWait = Integer.parseInt(System.getProperty('grails.geb.implicitWait', '30'))
+            implicitWait = Integer.parseInt(System.getProperty('grails.geb.implicitWait'))
         } catch (NumberFormatException ignored) {
-            implicitWait = 30
+            implicitWait = DEFAULT_IMPLICIT_WAIT
         }
         this.startTime = startTime
     }
