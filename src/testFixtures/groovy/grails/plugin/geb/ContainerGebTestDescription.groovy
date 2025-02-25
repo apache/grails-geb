@@ -18,9 +18,8 @@ package grails.plugin.geb
 import groovy.transform.CompileStatic
 import org.spockframework.runtime.model.ErrorInfo
 import org.spockframework.runtime.model.IterationInfo
+import org.springframework.lang.Nullable
 import org.testcontainers.lifecycle.TestDescription
-
-import javax.annotation.Nullable
 
 /**
  * java.util.ServiceLoader Compatible Interface ("must have a zero-argument constructor")
@@ -29,6 +28,7 @@ import javax.annotation.Nullable
  */
 @CompileStatic
 interface ContainerGebTestDescription extends TestDescription {
+
     IterationInfo getIterationInfo()
     /**
      * Will be set to value of

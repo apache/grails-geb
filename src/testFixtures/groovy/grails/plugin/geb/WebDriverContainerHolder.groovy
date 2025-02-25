@@ -121,7 +121,7 @@ class WebDriverContainerHolder {
         if (currentConfiguration.fileDetector != NullContainerFileDetector) {
             ServiceRegistry.setInstance(ContainerFileDetector, currentConfiguration.fileDetector)
         }
-        if (currentConfiguration.testDescription != NullContainerGebTestDescription.class) {
+        if (currentConfiguration.testDescription != NullContainerGebTestDescription) {
             ServiceRegistry.setInstance(ContainerGebTestDescription, currentConfiguration.testDescription)
         }
 

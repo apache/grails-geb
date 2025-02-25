@@ -1,14 +1,18 @@
 package org.demo.spock
 
 import grails.plugin.geb.ContainerGebSpec
-import grails.plugin.geb.ContainerGebTestDescriptionServiceFactory
+import grails.plugin.geb.ContainerGebTestDescriptionServiceLoader
 import grails.testing.mixin.integration.Integration
 
 @Integration
 class ContainerGebTestDescriptionSpec extends ContainerGebSpec {
 
     def setupSpec(){
-        ContainerGebTestDescriptionServiceFactory.setImplementation(new ContainerGebTestDescriptionImpl())
+        ContainerGebTestDescriptionServiceLoader.setInstance(new ContainerGebTestDescriptionImpl())
+    }
+
+    def cleanupSpec(){
+        ContainerGebTestDescriptionServiceLoader.setInstance(null)
     }
 
     /**
@@ -22,12 +26,8 @@ class ContainerGebTestDescriptionSpec extends ContainerGebSpec {
         true
 
         where:
-        data_driven_testing_param_1 << ["very long text lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet Liskov Substitution"]
-        param_2 << ["If an implementation is hard to explain, it is an established design pattern."]
+        data_driven_testing_param_1 << ['very long text lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet Liskov Substitution']
+        param_2 << ['If an implementation is hard to explain, it is an established design pattern.']
         param_3 << Integer.MAX_VALUE
-    }
-
-    def cleanupSpec(){
-        ContainerGebTestDescriptionServiceFactory.setImplementation(null)
     }
 }

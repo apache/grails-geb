@@ -5,7 +5,7 @@ import grails.plugin.geb.ContainerGebSpec
 import grails.testing.mixin.integration.Integration
 
 @Integration
-@ContainerGebConfiguration(testDescription = ContainerGebTestDescriptionImpl.class)
+@ContainerGebConfiguration(testDescription = ContainerGebTestDescriptionImpl)
 class ContainerGebTestDescriptionAnnotationSpec extends ContainerGebSpec {
 
     void 'should not raise a FileSystemException on recording save by loading custom implementation of TODO'(String data_driven_testing_param_1) {

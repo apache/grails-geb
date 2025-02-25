@@ -19,23 +19,28 @@ import groovy.transform.CompileStatic
 
 /**
  * ServiceLoader (META-INF) Loader that allows programmatic overwriting.
+ *
+ * @since 4.2
  */
 @CompileStatic
-class ContainerGebTestDescriptionServiceFactory {
-    private static ContainerGebTestDescription implementation
+class ContainerGebTestDescriptionServiceLoader {
 
-    static ContainerGebTestDescription getImplementation() {
-        return implementation ?: ServiceLoader.load(ContainerGebTestDescription).findFirst().orElse(new DefaultContainerGebTestDescription())
+    private static ContainerGebTestDescription instance
+
+    static ContainerGebTestDescription getInstance() {
+        if (instance != null) return instance
+        return ServiceLoader.load(ContainerGebTestDescription).findFirst()
+                .orElse(new DefaultContainerGebTestDescription())
     }
 
-    static void setImplementation(ContainerGebTestDescription implementation) {
-        this.implementation = implementation
+    static void setInstance(ContainerGebTestDescription instance) {
+        this.instance = instance
     }
     /**
      * Class must have a zero-argument constructor (ServiceLoader Requirement).
      */
-    static void setImplementation(Class<? extends ContainerGebTestDescription> implementation) {
-        setImplementation(implementation.getDeclaredConstructor().newInstance())
+    static void setInstance(Class<? extends ContainerGebTestDescription> clazz) {
+        setInstance(clazz.getDeclaredConstructor().newInstance())
     }
 }
 

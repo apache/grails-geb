@@ -69,7 +69,7 @@ import java.lang.annotation.Target
     /**
      * The {@link org.testcontainers.lifecycle.TestDescription} implementation to use for this class.
      * <p> {@link NullContainerGebTestDescription} results in the
-     *     {@link ContainerGebTestDescriptionServiceFactory last set} implementation being used.
+     *     {@link ContainerGebTestDescriptionServiceLoader last set} instance being used.
      */
     Class<? extends ContainerGebTestDescription> testDescription() default NullContainerGebTestDescription
 }
