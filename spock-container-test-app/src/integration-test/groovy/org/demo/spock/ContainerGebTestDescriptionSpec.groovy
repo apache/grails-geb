@@ -18,7 +18,7 @@ class ContainerGebTestDescriptionSpec extends ContainerGebSpec {
     /**
      * "The filename, directory name, or volume label syntax is incorrect" (too long)
      */
-    void 'should not raise a FileSystemException on recording save by loading custom implementation of TODO'(String data_driven_testing_param_1, String param_2, int param_3) {
+    void 'should not raise a FileSystemException on recording save by loading custom implementation of ContainerGebTestDescription'(String data_driven_testing_param_1, String param_2, int param_3) {
         when:
         go '/'
 

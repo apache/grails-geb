@@ -8,7 +8,7 @@ import grails.testing.mixin.integration.Integration
 @ContainerGebConfiguration(testDescription = ContainerGebTestDescriptionImpl)
 class ContainerGebTestDescriptionAnnotationSpec extends ContainerGebSpec {
 
-    void 'should not raise a FileSystemException on recording save by loading custom implementation of TODO'(String data_driven_testing_param_1) {
+    void 'should not raise a FileSystemException on recording save by loading custom implementation of ContainerGebTestDescription'(String data_driven_testing_param_1) {
         when:
         go '/'
 
@@ -16,6 +16,6 @@ class ContainerGebTestDescriptionAnnotationSpec extends ContainerGebSpec {
         true
 
         where:
-        data_driven_testing_param_1 << ["very long text lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet Liskov Substitution"]
+        data_driven_testing_param_1 << ['very long text lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet Liskov Substitution']
     }
 }

@@ -51,6 +51,4 @@ class DefaultContainerGebTestDescription implements ContainerGebTestDescription 
 /**
  * Used by {@link ContainerGebConfiguration#testDescription()} interface to represent a null value.
  */
-class NullContainerGebTestDescription extends DefaultContainerGebTestDescription {
-
-}
+class NullContainerGebTestDescription extends DefaultContainerGebTestDescription {}

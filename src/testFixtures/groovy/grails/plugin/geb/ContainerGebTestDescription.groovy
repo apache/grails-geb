@@ -18,11 +18,13 @@ package grails.plugin.geb
 import groovy.transform.CompileStatic
 import org.spockframework.runtime.model.ErrorInfo
 import org.spockframework.runtime.model.IterationInfo
-import org.springframework.lang.Nullable
 import org.testcontainers.lifecycle.TestDescription
 
 /**
- * java.util.ServiceLoader Compatible Interface ("must have a zero-argument constructor")
+ * An extension of {@link org.testcontainers.lifecycle.TestDescription} 
+ * that allows customization of recording file names.
+ * <p>
+ * Implementations must provide a zero-argument constructor to ensure compatibility with {@link java.util.ServiceLoader}.
  *
  * @see GebRecordingTestListener
  */
@@ -30,6 +32,7 @@ import org.testcontainers.lifecycle.TestDescription
 interface ContainerGebTestDescription extends TestDescription {
 
     IterationInfo getIterationInfo()
+    
     /**
      * Will be set to value of
      * {@link org.spockframework.runtime.IRunListener#afterIteration(org.spockframework.runtime.model.IterationInfo)}
@@ -42,9 +45,11 @@ interface ContainerGebTestDescription extends TestDescription {
      *
      * You could overwrite {@link ErrorInfo#getException()} to mimic that an Exception occurred, resulting in a recording file
      * if {@link org.testcontainers.containers.BrowserWebDriverContainer#recordingMode} is RECORD_FAILING.
+     * 
+     * @return null or the last value set by {@link #setErrorInfo(org.spockframework.runtime.model.ErrorInfo)}
      */
-    @Nullable
     ErrorInfo getErrorInfo()
+    
     /**
      * Will be set to value of
      * {@link org.spockframework.runtime.IRunListener#error(org.spockframework.runtime.model.ErrorInfo)}
