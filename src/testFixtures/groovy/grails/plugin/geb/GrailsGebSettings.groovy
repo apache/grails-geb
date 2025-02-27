@@ -38,6 +38,8 @@ class GrailsGebSettings {
     private static VncRecordingMode DEFAULT_RECORDING_MODE = VncRecordingMode.SKIP
     private static VncRecordingFormat DEFAULT_RECORDING_FORMAT = VncRecordingFormat.MP4
     private static int DEFAULT_IMPLICIT_WAIT = 0
+    private static int DEFAULT_PAGE_LOAD_TIMEOUT = 0
+    private static int DEFAULT_SCRIPT_TIMEOUT = 0
 
     String tracingEnabled
     String recordingDirectoryName
@@ -46,6 +48,8 @@ class GrailsGebSettings {
     VncRecordingFormat recordingFormat
     LocalDateTime startTime
     int implicitlyWait
+    int pageLoadTimeout
+    int scriptTimeout
 
     GrailsGebSettings(LocalDateTime startTime) {
         tracingEnabled = System.getProperty('grails.geb.tracing.enabled', 'false')
@@ -61,6 +65,18 @@ class GrailsGebSettings {
             implicitlyWait = Integer.parseInt(System.getProperty('grails.geb.webdriver.timeouts.implicitlyWait'))
         } catch (NumberFormatException ignored) {
             implicitlyWait = DEFAULT_IMPLICIT_WAIT
+        }
+
+        try {
+            pageLoadTimeout = Integer.parseInt(System.getProperty('grails.geb.webdriver.timeouts.pageLoad'))
+        } catch (NumberFormatException ignored) {
+            pageLoadTimeout = DEFAULT_PAGE_LOAD_TIMEOUT
+        }
+
+        try {
+            scriptTimeout = Integer.parseInt(System.getProperty('grails.geb.webdriver.timeouts.script'))
+        } catch (NumberFormatException ignored) {
+            scriptTimeout = DEFAULT_SCRIPT_TIMEOUT
         }
         this.startTime = startTime
     }

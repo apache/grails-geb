@@ -124,6 +124,12 @@ class WebDriverContainerHolder {
         if (grailsGebSettings.implicitlyWait > 0) {
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(grailsGebSettings.implicitlyWait))
         }
+        if (grailsGebSettings.pageLoadTimeout > 0) {
+            driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(grailsGebSettings.pageLoadTimeout))
+        }
+        if (grailsGebSettings.scriptTimeout > 0) {
+            driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(grailsGebSettings.scriptTimeout))
+        }
 
         currentBrowser.driver = driver
 
