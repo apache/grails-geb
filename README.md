@@ -78,9 +78,11 @@ By default, no test recording will be performed.  Here are the system properties
 
 #### Remove Implicit Wait
 
-* `grails.geb.implicitWait`
-  * purpose: test-containers edge case  
-  * defaults to `30` (seconds) 
+* `grails.geb.timeouts.implicitlyWait`
+  * purpose: global setting that applies to every element location call for the entire session 
+  * defaults to `0` seconds, which means that if an element is not found, it will immediately return an error.
+  * Warning: Do not mix implicit and explicit waits. Doing so can cause unpredictable wait times.
+    Consult the Geb and/or https://www.selenium.dev/documentation/webdriver/waits/[Selenium] documentation for details.
 
 
 #### Observability and Tracing
