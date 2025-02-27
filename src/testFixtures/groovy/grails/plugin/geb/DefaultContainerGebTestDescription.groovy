@@ -23,7 +23,7 @@ import org.spockframework.runtime.model.IterationInfo
  * Implements {@link org.testcontainers.lifecycle.TestDescription} to customize recording names.
  *
  * @author James Daugherty
- * @since 4.1
+ * @since 4.2
  */
 @CompileStatic
 class DefaultContainerGebTestDescription implements ContainerGebTestDescription {
