@@ -28,8 +28,8 @@ class ContainerGebTestDescriptionServiceLoader {
     private static ContainerGebTestDescription instance
 
     static ContainerGebTestDescription getInstance() {
-        if (instance != null) return instance
-        return ServiceLoader.load(ContainerGebTestDescription).findFirst()
+        instance ?: ServiceLoader.load(ContainerGebTestDescription)
+                .findFirst()
                 .orElse(new DefaultContainerGebTestDescription())
     }
 

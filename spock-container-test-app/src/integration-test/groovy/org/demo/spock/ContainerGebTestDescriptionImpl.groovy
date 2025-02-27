@@ -5,6 +5,7 @@ import groovy.transform.CompileStatic
 
 @CompileStatic
 class ContainerGebTestDescriptionImpl extends DefaultContainerGebTestDescription {
+    
     @Override
     String getTestId() {
         return "Custom_${getIterationInfo().feature.spec.displayName}"
