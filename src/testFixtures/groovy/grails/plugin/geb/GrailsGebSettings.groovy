@@ -58,7 +58,7 @@ class GrailsGebSettings {
                 System.getProperty('grails.geb.recording.format', DEFAULT_RECORDING_FORMAT.name())
         )
         try {
-            implicitlyWait = Integer.parseInt(System.getProperty('grails.geb.timeouts.implicitlyWait'))
+            implicitlyWait = Integer.parseInt(System.getProperty('grails.geb.webdriver.timeouts.implicitlyWait'))
         } catch (NumberFormatException ignored) {
             implicitlyWait = DEFAULT_IMPLICIT_WAIT
         }
