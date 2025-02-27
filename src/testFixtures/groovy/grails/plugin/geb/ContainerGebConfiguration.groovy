@@ -69,7 +69,7 @@ import java.lang.annotation.Target
     /**
      * The {@link org.testcontainers.lifecycle.TestDescription} implementation to use for this class.
      * <p> {@link NullContainerGebTestDescription} results in the
-     *     {@link ContainerGebTestDescriptionServiceLoader last set} instance being used.
+     *     {@link grails.plugin.geb.serviceloader.ContainerGebTestDescriptionServiceLoader last set} instance being used.
      */
     Class<? extends ContainerGebTestDescription> testDescription() default NullContainerGebTestDescription
 }

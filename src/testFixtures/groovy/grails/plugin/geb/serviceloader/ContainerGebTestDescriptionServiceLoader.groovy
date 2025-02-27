@@ -13,8 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package grails.plugin.geb
+package grails.plugin.geb.serviceloader
 
+import grails.plugin.geb.ContainerGebTestDescription
+import grails.plugin.geb.DefaultContainerGebTestDescription
 import groovy.transform.CompileStatic
 
 /**

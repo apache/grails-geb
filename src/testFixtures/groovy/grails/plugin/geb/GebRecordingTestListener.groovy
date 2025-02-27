@@ -15,6 +15,7 @@
  */
 package grails.plugin.geb
 
+import grails.plugin.geb.serviceloader.ContainerGebTestDescriptionServiceLoader
 import groovy.transform.CompileStatic
 import org.spockframework.runtime.AbstractRunListener
 import org.spockframework.runtime.model.ErrorInfo

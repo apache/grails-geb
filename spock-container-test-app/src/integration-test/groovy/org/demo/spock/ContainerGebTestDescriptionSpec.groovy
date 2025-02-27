@@ -1,7 +1,7 @@
 package org.demo.spock
 
 import grails.plugin.geb.ContainerGebSpec
-import grails.plugin.geb.ContainerGebTestDescriptionServiceLoader
+import grails.plugin.geb.serviceloader.ContainerGebTestDescriptionServiceLoader
 import grails.testing.mixin.integration.Integration
 
 @Integration
