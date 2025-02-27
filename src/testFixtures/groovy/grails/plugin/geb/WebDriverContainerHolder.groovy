@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 original author or authors
+ * Copyright 2024-2025 original author or authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@ import groovy.transform.EqualsAndHashCode
 import groovy.transform.PackageScope
 import groovy.util.logging.Slf4j
 import org.openqa.selenium.WebDriver
+import org.openqa.selenium.WebDriver.Timeouts
 import org.openqa.selenium.chrome.ChromeOptions
 import org.openqa.selenium.remote.RemoteWebDriver
 import org.spockframework.runtime.extension.IMethodInvocation
@@ -121,14 +122,10 @@ class WebDriverContainerHolder {
         currentBrowser = new Browser(new Configuration(configObject, new Properties(), null, null))
 
         WebDriver driver = new RemoteWebDriver(currentContainer.seleniumAddress, new ChromeOptions())
-        if (grailsGebSettings.implicitlyWait > 0) {
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(grailsGebSettings.implicitlyWait))
-        }
-        if (grailsGebSettings.pageLoadTimeout > 0) {
-            driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(grailsGebSettings.pageLoadTimeout))
-        }
-        if (grailsGebSettings.scriptTimeout > 0) {
-            driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(grailsGebSettings.scriptTimeout))
+        driver.manage().timeouts().with {Timeouts it ->
+            it.implicitlyWait(Duration.ofSeconds(grailsGebSettings.implicitlyWait))
+            it.pageLoadTimeout(Duration.ofSeconds(grailsGebSettings.pageLoadTimeout))
+            it.scriptTimeout(Duration.ofSeconds(grailsGebSettings.scriptTimeout))
         }
 
         currentBrowser.driver = driver

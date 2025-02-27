@@ -78,17 +78,18 @@ By default, no test recording will be performed.  Here are the system properties
 
 #### Remove Implicit Wait
 
-* `grails.geb.webdriver.timeouts.implicitlyWait`
+* `grails.geb.timeouts.implicitlyWait`
   * purpose: amount of time the driver should wait when searching for an element if it is not immediately present.
   * defaults to `0` seconds, which means that if an element is not found, it will immediately return an error.
   * Warning: Do not mix implicit and explicit waits. Doing so can cause unpredictable wait times.
-    Consult the Geb and/or https://www.selenium.dev/documentation/webdriver/waits/[Selenium] documentation for details.
-* `grails.geb.webdriver.timeouts.pageLoadTimeout`
+    Consult the [Geb](https://www.gebish.org/manual/current/#implicit-assertions-waiting) 
+    and/or [Selenium](https://www.selenium.dev/documentation/webdriver/waits/) documentation for details.
+* `grails.geb.timeouts.pageLoad`
   * purpose: amount of time to wait for a page load to complete before throwing an error.
-  * defaults to `0` seconds
-* `grails.geb.webdriver.timeouts.script`
+  * defaults to `300` seconds
+* `grails.geb.timeouts.script`
   * purpose: amount of time to wait for an asynchronous script to finish execution before throwing an error.
-  * defaults to `0` seconds
+  * defaults to `30` seconds
 
 #### Observability and Tracing
 Selenium integrates with [OpenTelemetry](https://opentelemetry.io) to support observability and tracing out of the box. By default, Selenium [enables tracing](https://www.selenium.dev/blog/2021/selenium-4-observability).

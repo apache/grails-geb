@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 original author or authors
+ * Copyright 2024-2025 original author or authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,9 +37,9 @@ class GrailsGebSettings {
 
     private static VncRecordingMode DEFAULT_RECORDING_MODE = VncRecordingMode.SKIP
     private static VncRecordingFormat DEFAULT_RECORDING_FORMAT = VncRecordingFormat.MP4
-    private static int DEFAULT_IMPLICIT_WAIT = 0
-    private static int DEFAULT_PAGE_LOAD_TIMEOUT = 0
-    private static int DEFAULT_SCRIPT_TIMEOUT = 0
+    private static int DEFAULT_TIMEOUT_IMPLICITLY_WAIT = 0
+    private static int DEFAULT_TIMEOUT_PAGE_LOAD = 300
+    private static int DEFAULT_TIMEOUT_SCRIPT = 30
 
     String tracingEnabled
     String recordingDirectoryName
@@ -61,24 +61,14 @@ class GrailsGebSettings {
         recordingFormat = VncRecordingFormat.valueOf(
                 System.getProperty('grails.geb.recording.format', DEFAULT_RECORDING_FORMAT.name())
         )
-        try {
-            implicitlyWait = Integer.parseInt(System.getProperty('grails.geb.webdriver.timeouts.implicitlyWait'))
-        } catch (NumberFormatException ignored) {
-            implicitlyWait = DEFAULT_IMPLICIT_WAIT
-        }
-
-        try {
-            pageLoadTimeout = Integer.parseInt(System.getProperty('grails.geb.webdriver.timeouts.pageLoad'))
-        } catch (NumberFormatException ignored) {
-            pageLoadTimeout = DEFAULT_PAGE_LOAD_TIMEOUT
-        }
-
-        try {
-            scriptTimeout = Integer.parseInt(System.getProperty('grails.geb.webdriver.timeouts.script'))
-        } catch (NumberFormatException ignored) {
-            scriptTimeout = DEFAULT_SCRIPT_TIMEOUT
-        }
+        implicitlyWait = getIntProperty('grails.geb.timeouts.implicitlyWait', DEFAULT_TIMEOUT_IMPLICITLY_WAIT)
+        pageLoadTimeout = getIntProperty('grails.geb.timeouts.pageLoad', DEFAULT_TIMEOUT_PAGE_LOAD)
+        scriptTimeout = getIntProperty('grails.geb.timeouts.script', DEFAULT_TIMEOUT_SCRIPT)
         this.startTime = startTime
+    }
+
+    private static int getIntProperty(String propertyName, int defaultValue) {
+        Integer.getInteger(propertyName, defaultValue) ?: defaultValue
     }
 
     boolean isRecordingEnabled() {
