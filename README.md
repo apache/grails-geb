@@ -88,14 +88,14 @@ To customize the default, either:
    and specify its fully qualified class name in a `META-INF/services/grails.plugin.geb.ContainerFileDetector` file
    on the classpath (e.g., `src/integration-test/resources`).
 2. Call [`ContainerFileDetectorServiceLoader.setInstance()`](./src/testFixtures/groovy/grails/plugin/geb/serviceloader/ContainerFileDetectorServiceLoader.groovy)
-   in a Spock `setupSpec` method to apply your naming convention (And use a `cleanupSpec` to limit this to one class).
-3. Set the `fileDetector` Property on your `ContainerGebConfiguration` annotation.
+   in a Spock `setupSpec()` method to apply your naming convention (And use a `cleanupSpec()` to limit this to one class).
+3. Use the `ContainerGebConfiguration` annotation and set its `fileDetector` property to your `ContainerFileDetector` implementation class.
 
 Alternatively, you can access the `BrowserWebDriverContainer` instance via
-the `container` from within your ContainerGebSpec to for example call `.copyFileToContainer`,
+the `container` from within your `ContainerGebSpec` to for example call `.copyFileToContainer()`,
 as done in [ContainerSupport#createFileInputSource utility method](./src/testFixtures/groovy/grails/plugin/geb/support/ContainerSupport.groovy).
 
-#### Remove Implicit Wait
+#### Timeouts
 
 * `grails.geb.timeouts.implicitlyWait`
   * purpose: amount of time the driver should wait when searching for an element if it is not immediately present.

@@ -15,16 +15,12 @@
  */
 package grails.plugin.geb
 
-import org.openqa.selenium.remote.FileDetector
-import org.openqa.selenium.remote.LocalFileDetector
 import org.testcontainers.containers.GenericContainer
 
-import javax.validation.constraints.NotNull
 import java.lang.annotation.ElementType
 import java.lang.annotation.Retention
 import java.lang.annotation.RetentionPolicy
-import java.lang.annotation.Target
-
+import java.lang.annotation.Target 
 /**
  * Can be used to configure the protocol and hostname that the container's browser will use
  *

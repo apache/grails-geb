@@ -26,9 +26,7 @@ import groovy.transform.EqualsAndHashCode
 import groovy.transform.PackageScope
 import groovy.util.logging.Slf4j
 import org.openqa.selenium.WebDriver
-import org.openqa.selenium.WebDriver.Timeouts
 import org.openqa.selenium.chrome.ChromeOptions
-import org.openqa.selenium.remote.FileDetector
 import org.openqa.selenium.remote.RemoteWebDriver
 import org.spockframework.runtime.extension.IMethodInvocation
 import org.spockframework.runtime.model.SpecInfo

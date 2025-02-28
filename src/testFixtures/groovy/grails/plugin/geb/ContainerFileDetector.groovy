@@ -28,5 +28,4 @@ import org.openqa.selenium.remote.FileDetector
  */
 @CompileStatic
 interface ContainerFileDetector extends FileDetector {
-    
 }

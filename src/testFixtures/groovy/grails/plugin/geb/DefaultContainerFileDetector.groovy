@@ -22,7 +22,6 @@ import groovy.transform.CompileStatic
 /**
  * Detects files on the local disk.
  * 
- * @author Jonas Pammer
  * @since 4.2
  */
 @CompileStatic
@@ -32,7 +31,6 @@ class DefaultContainerFileDetector extends LocalFileDetector implements Containe
 /**
  * A file detector that never finds anything.
  * 
- * @author Jonas Pammer
  * @since 4.2
  */
 @CompileStatic
@@ -42,4 +40,5 @@ class UselessContainerFileDetector extends UselessFileDetector implements Contai
 /**
  * Used by {@link ContainerGebConfiguration#fileDetector()} interface to represent a null value.
  */
-class NullContainerFileDetector extends DefaultContainerFileDetector {}
+class NullContainerFileDetector extends DefaultContainerFileDetector {
+}
