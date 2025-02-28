@@ -83,7 +83,9 @@ class GrailsGebSettings {
 
         File recordingDirectory = new File("${recordingDirectoryName}${File.separator}${DateTimeFormatter.ofPattern('yyyyMMdd_HHmmss').format(startTime)}")
         if (!recordingDirectory.exists()) {
-            log.info('Could not find `{}` Directory for recording. Creating...', recordingDirectoryName)
+            if (!recordingDirectory.parentFile.exists()) {
+                log.info('Could not find `{}` Directory for recording. Creating...', recordingDirectoryName)
+            }
             recordingDirectory.mkdirs()
         } else if (!recordingDirectory.isDirectory()) {
             throw new IllegalStateException("Configured recording directory '${recordingDirectory}' is expected to be a directory, but found file instead.")
@@ -100,7 +102,9 @@ class GrailsGebSettings {
 
         File reportingDirectory = new File("${reportingDirectoryName}${File.separator}${DateTimeFormatter.ofPattern('yyyyMMdd_HHmmss').format(startTime)}")
         if (!reportingDirectory.exists()) {
-            log.info('Could not find `{}` Directory for reporting. Creating...', reportingDirectoryName)
+            if (!reportingDirectory.parentFile.exists()) {
+                log.info('Could not find `{}` Directory for reporting. Creating...', reportingDirectoryName)
+            }
             reportingDirectory.mkdirs()
         } else if (!reportingDirectory.isDirectory()) {
             throw new IllegalStateException("Configured reporting directory '${reportingDirectory}' is expected to be a directory, but found file instead.")
