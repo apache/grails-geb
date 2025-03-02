@@ -3,7 +3,6 @@ package org.demo.spock
 import geb.report.CompositeReporter
 import geb.report.PageSourceReporter
 import geb.report.Reporter
-import geb.report.ScreenshotReporter
 import grails.plugin.geb.ContainerGebConfiguration
 import grails.plugin.geb.ContainerGebSpec
 import grails.testing.mixin.integration.Integration
@@ -19,7 +18,7 @@ class RootPageSpec extends ContainerGebSpec {
     @Override
     Reporter createReporter() {
         // Override the default reporter to demonstrate how this can be customized
-        new CompositeReporter(new ScreenshotReporter(), new PageSourceReporter())
+        new CompositeReporter(new PageSourceReporter())
     }
 
     void 'should display the correct title on the home page'() {
