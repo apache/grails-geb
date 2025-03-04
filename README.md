@@ -87,7 +87,7 @@ To customize the default, either:
 1. Create a class that implements [`ContainerFileDetector`](./src/testFixtures/groovy/grails/plugin/geb/ContainerFileDetector.groovy)
    and specify its fully qualified class name in a `META-INF/services/grails.plugin.geb.ContainerFileDetector` file
    on the classpath (e.g., `src/integration-test/resources`).
-2. Call [`ContainerFileDetectorServiceLoader.setInstance()`](./src/testFixtures/groovy/grails/plugin/geb/serviceloader/ContainerFileDetectorServiceLoader.groovy)
+2. Call [`ServiceRegistry.setInstance()`](./src/testFixtures/groovy/grails/plugin/geb/serviceloader/ServiceRegistry.groovy)
    in a Spock `setupSpec()` method to apply your naming convention (And use a `cleanupSpec()` to limit this to one class).
 3. Use the `ContainerGebConfiguration` annotation and set its `fileDetector` property to your `ContainerFileDetector` implementation class.
 

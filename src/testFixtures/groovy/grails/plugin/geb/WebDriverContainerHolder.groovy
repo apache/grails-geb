@@ -20,7 +20,7 @@ import geb.Browser
 import geb.Configuration
 import geb.spock.SpockGebTestManagerBuilder
 import geb.test.GebTestManager
-import grails.plugin.geb.serviceloader.ContainerFileDetectorServiceLoader
+import grails.plugin.geb.serviceloader.ServiceRegistry
 import groovy.transform.CompileStatic
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.PackageScope
@@ -119,13 +119,12 @@ class WebDriverContainerHolder {
             configObject.reporter = (invocation.sharedInstance as ContainerGebSpec).createReporter()
         }
         if (currentConfiguration.fileDetector != NullContainerFileDetector) {
-            ContainerFileDetectorServiceLoader.setInstance(currentConfiguration.fileDetector)
-        }
+            ServiceRegistry.setInstance(ContainerFileDetector, currentConfiguration.fileDetector)        }
 
         currentBrowser = new Browser(new Configuration(configObject, new Properties(), null, null))
 
         WebDriver driver = new RemoteWebDriver(currentContainer.seleniumAddress, new ChromeOptions())
-        ContainerFileDetector fileDetector = ContainerFileDetectorServiceLoader.getInstance()
+        ContainerFileDetector fileDetector = ServiceRegistry.getInstance(ContainerFileDetector, DefaultContainerFileDetector)
         ((RemoteWebDriver) driver).setFileDetector(fileDetector)
         driver.manage().timeouts().with {
             implicitlyWait(Duration.ofSeconds(grailsGebSettings.implicitlyWait))

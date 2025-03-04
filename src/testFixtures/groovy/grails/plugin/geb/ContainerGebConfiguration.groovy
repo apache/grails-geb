@@ -56,7 +56,7 @@ import java.lang.annotation.Target
     /**
      * The {@link org.openqa.selenium.remote.FileDetector} implementation to use for this class.
      * <p> {@link NullContainerFileDetector} results in the
-     *     {@link grails.plugin.geb.serviceloader.ContainerFileDetectorServiceLoader last set} instance being used.
+     *     {@link grails.plugin.geb.serviceloader.ServiceRegistry last set} instance being used.
      *
      * @since 4.2
      * @see grails.plugin.geb.DefaultContainerFileDetector DefaultContainerFileDetector
