@@ -1,21 +1,18 @@
 package org.demo.spock
 
-import grails.plugin.geb.ContainerGebConfiguration
 import grails.plugin.geb.ContainerGebSpec
-import grails.plugin.geb.UselessContainerFileDetector
 import grails.testing.mixin.integration.Integration
 import org.demo.spock.pages.UploadPage
-import org.openqa.selenium.WebDriverException
-import org.openqa.selenium.remote.UselessFileDetector
 import spock.lang.IgnoreIf
 import spock.lang.Requires
 
 /**
- * Altered copy of {@link LocalUploadSpec} that throws {@link org.openqa.selenium.InvalidArgumentException}
+ * Altered copy of {@link UploadSpec} that depends on default of
+ * {@link grails.plugin.geb.ContainerGebConfiguration#fileDetector} to be
+ * {@link org.openqa.selenium.remote.LocalFileDetector}
  */
 @Integration
-@ContainerGebConfiguration(fileDetector = UselessContainerFileDetector)
-class UselessUploadSpec extends ContainerGebSpec {
+class ContainerFileDetectorDefaultSpec extends ContainerGebSpec {
 
     @Requires({ os.windows })
     void 'should be able to find and upload files on a Windows host'() {
@@ -29,8 +26,8 @@ class UselessUploadSpec extends ContainerGebSpec {
         uploadPage.submitBtn.click()
 
         then:
-        def e = thrown(WebDriverException)
-        e.message.contains('File not found')
+        title == 'File Uploaded'
+        pageSource.contains('File uploaded successfully')
     }
 
     @IgnoreIf({ os.windows })
@@ -45,7 +42,7 @@ class UselessUploadSpec extends ContainerGebSpec {
         uploadPage.submitBtn.click()
 
         then:
-        def e = thrown(WebDriverException)
-        e.message.contains('File not found')
+        title == 'File Uploaded'
+        pageSource.contains('File uploaded successfully')
     }
 }
