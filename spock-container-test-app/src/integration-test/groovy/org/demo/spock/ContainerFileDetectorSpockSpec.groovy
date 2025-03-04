@@ -1,8 +1,10 @@
 package org.demo.spock
 
+import grails.plugin.geb.ContainerFileDetector
 import grails.plugin.geb.ContainerGebConfiguration
 import grails.plugin.geb.ContainerGebSpec
 import grails.plugin.geb.UselessContainerFileDetector
+import grails.plugin.geb.serviceloader.ServiceRegistry
 import grails.testing.mixin.integration.Integration
 import org.demo.spock.pages.UploadPage
 import org.openqa.selenium.WebDriverException
@@ -10,13 +12,19 @@ import spock.lang.IgnoreIf
 import spock.lang.Requires
 
 /**
- * Altered copy of {@link ContainerFileDetectorDefaultSpec} 
- * that throws {@link org.openqa.selenium.InvalidArgumentException}
+ * Altered copy of {@link ContainerFileDetectorAnnotationSpec}
  */
 @Integration
-@ContainerGebConfiguration(fileDetector = UselessContainerFileDetector)
-class ContainerFileDetectorAnnotationSpec extends ContainerGebSpec {
+class ContainerFileDetectorSpockSpec extends ContainerGebSpec {
 
+    def setupSpec(){
+        ServiceRegistry.setInstance(ContainerFileDetector, new UselessContainerFileDetector())
+    }
+
+    def cleanupSpec(){
+        ServiceRegistry.setInstance(ContainerFileDetector, null)
+    }
+    
     @Requires({ os.windows })
     void 'should be able to find and upload files on a Windows host'() {
         given:
