@@ -27,22 +27,24 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class ContainerFileDetectorServiceLoader {
 
-    private static ContainerFileDetector instance
-
+    /**
+     * Delegates to {@link ServiceRegistry#getInstance(Class, Class)}.
+     */
     static ContainerFileDetector getInstance() {
-        instance ?: ServiceLoader.load(ContainerFileDetector)
-                .findFirst()
-                .orElse(new DefaultContainerFileDetector())
-    }
-
-    static void setInstance(ContainerFileDetector instance) {
-        this.instance = instance
+        ServiceRegistry.getInstance(ContainerFileDetector, DefaultContainerFileDetector)
     }
 
     /**
-     * Class must have a zero-argument constructor (ServiceLoader Requirement).
+     * Delegates to {@link ServiceRegistry#setInstance(Class, Object)}.
+     */
+    static void setInstance(ContainerFileDetector instance) {
+        ServiceRegistry.setInstance(ContainerFileDetector, instance)
+    }
+
+    /**
+     * Delegates to {@link ServiceRegistry#setInstance(Class, Class)}.
      */
     static void setInstance(Class<? extends ContainerFileDetector> clazz) {
-        setInstance(clazz.getDeclaredConstructor().newInstance())
+        ServiceRegistry.setInstance(ContainerFileDetector, clazz)
     }
 }
