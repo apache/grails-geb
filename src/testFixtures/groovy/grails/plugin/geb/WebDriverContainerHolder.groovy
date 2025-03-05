@@ -206,13 +206,42 @@ class WebDriverContainerHolder {
         boolean reporting
 
         WebDriverContainerConfiguration(SpecInfo spec) {
-            ContainerGebConfiguration configuration = spec.annotations.find {
+            def configs = collectConfigurations(spec)
+            
+            // Merge configurations, later configs (child specs) override earlier ones (parent specs)
+            protocol = configs.findResult { it?.protocol() != ContainerGebConfiguration.DEFAULT_PROTOCOL ? it?.protocol() : null } ?: 
+                      ContainerGebConfiguration.DEFAULT_PROTOCOL
+            hostName = configs.findResult { it?.hostName() != ContainerGebConfiguration.DEFAULT_HOSTNAME_FROM_CONTAINER ? it?.hostName() : null } ?: 
+                      ContainerGebConfiguration.DEFAULT_HOSTNAME_FROM_CONTAINER
+            reporting = configs.any { it?.reporting() }
+        }
+
+        private static List<ContainerGebConfiguration> collectConfigurations(SpecInfo spec) {
+            List<ContainerGebConfiguration> configs = []
+            
+            // Add current spec's configuration
+            ContainerGebConfiguration current = spec.annotations.find {
                 it.annotationType() == ContainerGebConfiguration
             } as ContainerGebConfiguration
+            
+            configs << current
 
-            protocol = configuration?.protocol() ?: ContainerGebConfiguration.DEFAULT_PROTOCOL
-            hostName = configuration?.hostName() ?: ContainerGebConfiguration.DEFAULT_HOSTNAME_FROM_CONTAINER
-            reporting = configuration?.reporting() ?: false
+            // If current config allows inheritance or doesn't exist, look at parent specs
+            if (current == null || current.inherited()) {
+                SpecInfo superSpec = spec.superSpec
+                while (superSpec != null) {
+                    ContainerGebConfiguration parentConfig = superSpec.annotations.find {
+                        it.annotationType() == ContainerGebConfiguration
+                    } as ContainerGebConfiguration
+
+                    if (parentConfig?.inherited()) {
+                        configs << parentConfig
+                    }
+                    superSpec = superSpec.superSpec
+                }
+            }
+
+            return configs.findAll { it != null }
         }
     }
 }

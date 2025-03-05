@@ -6,6 +6,7 @@ import geb.report.Reporter
 import grails.plugin.geb.ContainerGebConfiguration
 import grails.plugin.geb.ContainerGebSpec
 import grails.testing.mixin.integration.Integration
+import spock.lang.Ignore
 
 /**
  * See https://docs.grails.org/latest/guide/testing.html#functionalTesting and https://www.gebish.org/manual/current/
@@ -16,6 +17,7 @@ import grails.testing.mixin.integration.Integration
 class RootPageSpec extends ContainerGebSpec {
 
     @Override
+    @Ignore
     Reporter createReporter() {
         // Override the default reporter to demonstrate how this can be customized
         new CompositeReporter(new PageSourceReporter())
