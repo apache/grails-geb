@@ -53,3 +53,20 @@ import java.lang.annotation.Target
      */
     boolean reporting() default false
 }
+
+/**
+ * Inheritable version of {@link ContainerGebConfiguration}
+ */
+interface IContainerGebConfiguration {
+    default String protocol() {
+        return ContainerGebConfiguration.DEFAULT_PROTOCOL
+    }
+
+    default String hostName() {
+        return ContainerGebConfiguration.DEFAULT_HOSTNAME_FROM_CONTAINER
+    }
+
+    default boolean reporting() {
+        return false
+    }
+}

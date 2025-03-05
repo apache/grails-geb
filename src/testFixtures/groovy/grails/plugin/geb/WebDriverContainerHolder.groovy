@@ -206,9 +206,17 @@ class WebDriverContainerHolder {
         boolean reporting
 
         WebDriverContainerConfiguration(SpecInfo spec) {
-            ContainerGebConfiguration configuration = spec.annotations.find {
-                it.annotationType() == ContainerGebConfiguration
-            } as ContainerGebConfiguration
+            ContainerGebConfiguration configuration
+
+            // Check if the class implements the interface
+            if (IContainerGebConfiguration.isAssignableFrom(spec.reflection)) {
+                configuration = spec.reflection.getConstructor().newInstance() as ContainerGebConfiguration
+            } else {
+                // Check for the annotation
+                configuration = spec.annotations.find {
+                    it.annotationType() == ContainerGebConfiguration
+                } as ContainerGebConfiguration
+            }
 
             protocol = configuration?.protocol() ?: ContainerGebConfiguration.DEFAULT_PROTOCOL
             hostName = configuration?.hostName() ?: ContainerGebConfiguration.DEFAULT_HOSTNAME_FROM_CONTAINER
