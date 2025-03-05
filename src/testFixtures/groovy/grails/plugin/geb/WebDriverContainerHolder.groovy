@@ -206,49 +206,13 @@ class WebDriverContainerHolder {
         boolean reporting
 
         WebDriverContainerConfiguration(SpecInfo spec) {
-            def configs = collectConfigurations(spec)
-            
-            // Merge configurations, later configs (child specs) override earlier ones (parent specs)
-            protocol = configs.findResult { it?.protocol() != ContainerGebConfiguration.DEFAULT_PROTOCOL ? it?.protocol() : null } ?: 
-                      ContainerGebConfiguration.DEFAULT_PROTOCOL
-            hostName = configs.findResult { it?.hostName() != ContainerGebConfiguration.DEFAULT_HOSTNAME_FROM_CONTAINER ? it?.hostName() : null } ?: 
-                      ContainerGebConfiguration.DEFAULT_HOSTNAME_FROM_CONTAINER
-            reporting = configs.any { it?.reporting() }
-        }
-
-      private static List<ContainerGebConfiguration> collectConfigurations(SpecInfo spec) {
-            List<ContainerGebConfiguration> configs = []
-
-            // Add current spec's configuration
-            ContainerGebConfiguration current = spec.annotations.find {
+            ContainerGebConfiguration configuration = spec.annotations.find {
                 it.annotationType() == ContainerGebConfiguration
             } as ContainerGebConfiguration
 
-            configs << current
-
-            // Look at parent specs if needed
-            if (current == null || current.inherited().length != 0) {
-                Set<String> inheritedProps = current?.inherited()?.toList()?.toSet() ?: [] as Set<String>
-                SpecInfo superSpec = spec.superSpec
-                while (superSpec != null) {
-                    ContainerGebConfiguration parentConfig = superSpec.annotations.find {
-                        it.annotationType() == ContainerGebConfiguration
-                    } as ContainerGebConfiguration
-
-                    if (parentConfig != null) {
-                        // Only include parent config if it has properties we want to inherit
-                        String[] parentInherited = parentConfig.inherited()
-                        if (!inheritedProps.isEmpty() || parentInherited.length > 0) {
-                            configs << parentConfig
-                            // Update inherited props to include parent's inherited props
-                            inheritedProps.addAll(Arrays.asList(parentInherited))
-                        }
-                    }
-                    superSpec = superSpec.superSpec
-                }
-            }
-
-            return configs.findAll { it != null }
+            protocol = configuration?.protocol() ?: ContainerGebConfiguration.DEFAULT_PROTOCOL
+            hostName = configuration?.hostName() ?: ContainerGebConfiguration.DEFAULT_HOSTNAME_FROM_CONTAINER
+            reporting = configuration?.reporting() ?: false
         }
     }
 }

@@ -34,15 +34,6 @@ import java.lang.annotation.Target
 
     static final String DEFAULT_HOSTNAME_FROM_CONTAINER = GenericContainer.INTERNAL_HOST_HOSTNAME
     static final String DEFAULT_PROTOCOL = 'http'
-    
-    /**
-     * List of properties that should be inherited by child classes.
-     * Valid values are: "protocol", "hostName", "reporting"
-     * An empty array means no properties are inherited.
-     * 
-     * @since 4.2
-     */
-    String[] inherited() default [];
 
     /**
      * The protocol that the container's browser will use to access the server under test.
