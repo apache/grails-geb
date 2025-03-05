@@ -216,26 +216,33 @@ class WebDriverContainerHolder {
             reporting = configs.any { it?.reporting() }
         }
 
-        private static List<ContainerGebConfiguration> collectConfigurations(SpecInfo spec) {
+      private static List<ContainerGebConfiguration> collectConfigurations(SpecInfo spec) {
             List<ContainerGebConfiguration> configs = []
-            
+
             // Add current spec's configuration
             ContainerGebConfiguration current = spec.annotations.find {
                 it.annotationType() == ContainerGebConfiguration
             } as ContainerGebConfiguration
-            
+
             configs << current
 
-            // If current config allows inheritance or doesn't exist, look at parent specs
-            if (current == null || current.inherited()) {
+            // Look at parent specs if needed
+            if (current == null || current.inherited().length != 0) {
+                Set<String> inheritedProps = current?.inherited()?.toList()?.toSet() ?: [] as Set<String>
                 SpecInfo superSpec = spec.superSpec
                 while (superSpec != null) {
                     ContainerGebConfiguration parentConfig = superSpec.annotations.find {
                         it.annotationType() == ContainerGebConfiguration
                     } as ContainerGebConfiguration
 
-                    if (parentConfig?.inherited()) {
-                        configs << parentConfig
+                    if (parentConfig != null) {
+                        // Only include parent config if it has properties we want to inherit
+                        String[] parentInherited = parentConfig.inherited()
+                        if (!inheritedProps.isEmpty() || parentInherited.length > 0) {
+                            configs << parentConfig
+                            // Update inherited props to include parent's inherited props
+                            inheritedProps.addAll(Arrays.asList(parentInherited))
+                        }
                     }
                     superSpec = superSpec.superSpec
                 }

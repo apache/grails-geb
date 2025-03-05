@@ -36,13 +36,13 @@ import java.lang.annotation.Target
     static final String DEFAULT_PROTOCOL = 'http'
     
     /**
-     * Whether this annotation should be inherited by child classes.
-     * Children overwrites only work for non-default values.
-     *
-     * If the scenario concludes a multiple inheritance chain, the search stops when this is false.
+     * List of properties that should be inherited by child classes.
+     * Valid values are: "protocol", "hostName", "reporting"
+     * An empty array means no properties are inherited.
+     * 
      * @since 4.2
      */
-    boolean inherited() default false;
+    String[] inherited() default [];
 
     /**
      * The protocol that the container's browser will use to access the server under test.

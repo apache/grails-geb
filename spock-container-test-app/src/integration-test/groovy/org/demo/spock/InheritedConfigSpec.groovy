@@ -9,7 +9,7 @@ import spock.lang.FailsWith
  * Adaptation of {@link ServerNameControllerSpec}
  */
 @Integration
-@ContainerGebConfiguration(hostName = 'super.example.com', inherited = true)
+@ContainerGebConfiguration(hostName = 'super.example.com', inherited = ['hostName'])
 class SuperSpec extends ContainerGebSpec {}
 @Integration
 @ContainerGebConfiguration(hostName = 'not.example.com')
@@ -59,8 +59,10 @@ class ChildPreferenceInheritedConfigSpec extends SuperSpec {
 
 // No sane person would do this, but lets test anyway
 @Integration
-@ContainerGebConfiguration(reporting=true, inherited = true)
-class MultipleInheritedConfigSpec extends SuperSpec {
+@ContainerGebConfiguration(reporting=true, inherited=['reporting'])
+class SuperSuperInheritedConfigSpec extends SuperSpec {}
+@Integration
+class MultipleInheritanceSpec extends SuperSuperInheritedConfigSpec {
     void 'should show the right server name when visiting /serverName'() {
         when: 'visiting the server name controller'
         go '/serverName'
