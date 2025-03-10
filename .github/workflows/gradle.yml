@@ -41,6 +41,8 @@ jobs:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
     needs: 'build'
+    permissions:
+      contents: write
     steps:
       - name: "📥 Checkout repository"
         uses: actions/checkout@v4
@@ -64,13 +66,10 @@ jobs:
         if: success()
         id: docs
         run: ./gradlew groovydoc
-      - name: "📤 Publish Snapshot Documentation to Github Pages"
+      - name: "🚀 Publish to Github Pages"
         if: steps.docs.outcome == 'success'
-        uses: grails/github-pages-deploy-action@grails
+        uses: grails/grails-github-actions/deploy-github-pages@main
         env:
-          BRANCH: gh-pages
-          COMMIT_EMAIL: 'grails-build@users.noreply.github.com'
-          COMMIT_NAME: 'grails-build'
-          DOC_FOLDER: gh-pages
-          FOLDER: build/docs
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GRADLE_PUBLISH_RELEASE: 'false'
+          SOURCE_FOLDER: build/docs
