@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 original author or authors
+ * Copyright 2024-2025 original author or authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -56,17 +56,20 @@ import java.lang.annotation.Target
 
 /**
  * Inheritable version of {@link ContainerGebConfiguration}
+ * 
+ * @since 4.2
  */
 interface IContainerGebConfiguration {
+    
     default String protocol() {
-        return ContainerGebConfiguration.DEFAULT_PROTOCOL
+        ContainerGebConfiguration.DEFAULT_PROTOCOL
     }
 
     default String hostName() {
-        return ContainerGebConfiguration.DEFAULT_HOSTNAME_FROM_CONTAINER
+        ContainerGebConfiguration.DEFAULT_HOSTNAME_FROM_CONTAINER
     }
 
     default boolean reporting() {
-        return false
+        false
     }
 }

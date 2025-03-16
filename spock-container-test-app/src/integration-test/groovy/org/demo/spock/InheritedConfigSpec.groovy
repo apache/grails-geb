@@ -15,11 +15,10 @@ class SuperSpec extends ContainerGebSpec implements IContainerGebConfiguration {
         return 'super.example.com'
     }
 }
+
 @Integration
 @ContainerGebConfiguration(hostName = 'not.example.com')
-class NotSuperSpec extends ContainerGebSpec {
-    
-}
+class NotSuperSpec extends ContainerGebSpec {}
 
 @Integration
 class InheritedConfigSpec extends SuperSpec {
@@ -75,6 +74,7 @@ class SuperSuperInheritedConfigSpec extends SuperSpec {
         return true
     }
 }
+
 @Integration
 class MultipleInheritanceSpec extends SuperSuperInheritedConfigSpec {
     void 'should show the right server name when visiting /serverName'() {
