@@ -17,7 +17,6 @@ package grails.plugin.geb
 
 import org.openqa.selenium.remote.LocalFileDetector
 import org.openqa.selenium.remote.UselessFileDetector
-import groovy.transform.CompileStatic
 
 /**
  * Detects files on the local disk.
