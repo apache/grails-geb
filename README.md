@@ -55,7 +55,18 @@ Just run `./gradlew integrationTest` and a container will be started and configu
 
 #### Custom Host Configuration
 
-The annotation `ContainerGebConfiguration` exists to customize the connection the container will use to access the application under test. The annotation is not required and `ContainerGebSpec` will use the default values in this annotation if it's not present.
+The annotation `ContainerGebConfiguration` exists to customize the connection the container will use to access the application under test.
+The annotation is not required and `ContainerGebSpec` will use the default values in this annotation if it's not present.
+
+The interface `IContainerGebConfiguration` exists as an inheritable version of the annotation.
+
+#### Reporting
+
+To configure reporting, enable it using the `recording` property on the annotation `ContainerGebConfiguration`.  The following system properties exist for reporting configuration:
+
+* `grails.geb.reporting.directory`
+  * purpose: if the test enables reporting, the directory to save the reports relative to the project directory
+  * defaults to `build/gebContainer/reports`
 
 #### Recording
 By default, no test recording will be performed.  Here are the system properties available to change the recording behavior:
