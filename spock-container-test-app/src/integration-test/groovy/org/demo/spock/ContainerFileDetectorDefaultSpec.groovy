@@ -3,8 +3,6 @@ package org.demo.spock
 import grails.plugin.geb.ContainerGebSpec
 import grails.testing.mixin.integration.Integration
 import org.demo.spock.pages.UploadPage
-import spock.lang.IgnoreIf
-import spock.lang.Requires
 
 /**
  * Altered copy of {@link UploadSpec} that depends on default of

@@ -24,7 +24,6 @@ import groovy.transform.CompileStatic
  * 
  * @since 4.2
  */
-@CompileStatic
 class DefaultContainerFileDetector extends LocalFileDetector implements ContainerFileDetector {
 }
 
@@ -33,7 +32,6 @@ class DefaultContainerFileDetector extends LocalFileDetector implements Containe
  * 
  * @since 4.2
  */
-@CompileStatic
 class UselessContainerFileDetector extends UselessFileDetector implements ContainerFileDetector {
 }
 

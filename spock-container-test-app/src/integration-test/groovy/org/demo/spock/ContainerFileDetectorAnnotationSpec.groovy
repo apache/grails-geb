@@ -6,8 +6,6 @@ import grails.plugin.geb.UselessContainerFileDetector
 import grails.testing.mixin.integration.Integration
 import org.demo.spock.pages.UploadPage
 import org.openqa.selenium.WebDriverException
-import spock.lang.IgnoreIf
-import spock.lang.Requires
 
 /**
  * Altered copy of {@link ContainerFileDetectorDefaultSpec} 
