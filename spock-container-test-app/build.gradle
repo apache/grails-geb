@@ -1,7 +1,7 @@
 buildscript {
     repositories {
-        mavenLocal() // TODO: Remove after publish
         maven { url = 'https://repo.grails.org/grails/core' }
+        maven { url = 'https://repository.apache.org/content/repositories/snapshots' }
         mavenCentral()
         if (System.getenv("GITHUB_MAVEN_PASSWORD") && !grailsVersion.endsWith('-SNAPSHOT')) {
             System.out.println("Adding Grails Core Repo for project ${project.name}")
@@ -16,19 +16,19 @@ buildscript {
     }
     dependencies {
         classpath platform("org.apache.grails:grails-bom:$grailsVersion")
-        classpath "org.grails:grails-gradle-plugin"
+        classpath "org.apache.grails:grails-gradle-plugins"
     }
 }
 
 apply plugin: 'groovy'
-apply plugin: 'org.grails.grails-web'
-apply plugin: 'org.grails.grails-gsp'
+apply plugin: 'org.apache.grails.gradle.grails-web'
+apply plugin: 'org.apache.grails.gradle.grails-gsp'
 
 group = 'org.demo.spock'
 
 repositories {
-    mavenLocal() // TODO: remove after published
     maven { url = 'https://repo.grails.org/grails/core' }
+    maven { url = 'https://repository.apache.org/content/repositories/snapshots' }
     mavenCentral()
     if (System.getenv("GITHUB_MAVEN_PASSWORD") && !grailsVersion.endsWith('-SNAPSHOT')) {
         System.out.println("Adding Grails Core Repo for project ${project.name}")
@@ -57,7 +57,10 @@ dependencies {
     implementation 'org.apache.grails.web:grails-web-boot'
     implementation 'org.grails.plugins:gsp'
     implementation 'org.grails.plugins:hibernate5'
-    implementation 'org.grails.plugins:scaffolding'
+    implementation 'org.grails.plugins:scaffolding', {
+        exclude group: 'org.grails', module: 'grails-plugin-rest' // TODO: Remove after views are published
+    }
+    implementation 'org.apache.grails:grails-rest-transforms' // TODO: Remove after views are published
     implementation 'org.springframework.boot:spring-boot-autoconfigure'
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
@@ -75,7 +78,10 @@ dependencies {
     }
     testImplementation "org.grails:grails-web-testing-support", {
         exclude group: 'org.grails', module: 'grails-testing-support' // TODO: Remove after views are published
+        exclude group: 'org.grails', module: 'grails-plugin-rest' // TODO: Remove after views are published
+        exclude group: 'org.grails', module: 'grails-plugin-interceptors' // TODO: remove after views are published
     }
+    testImplementation 'org.apache.grails:grails-interceptors' // TODO: remove after views are published
     testImplementation 'org.apache.grails.testing:grails-testing-support-core' // TODO: Remove after views are published
     testImplementation 'org.spockframework:spock-core'
 

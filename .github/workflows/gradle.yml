@@ -7,6 +7,8 @@ on:
     branches:
       - '[3-9]+.[0-9]+.x'
   workflow_dispatch:
+permissions:
+  packages: read
 jobs:
   build:
     name: "Build Project"
@@ -58,8 +60,8 @@ jobs:
       - name: "📤 Publish Snapshot version to Artifactory (repo.grails.org)"
         env:
           MAVEN_PUBLISH_URL: ${{ secrets.GRAILS_NEXUS_PUBLISH_SNAPSHOT_URL }}
-          MAVEN_PUBLISH_USERNAME: ${{ secrets.GRAILS_NEXUS_USER }}
-          MAVEN_PUBLISH_PASSWORD: ${{ secrets.GRAILS_NEXUS_PW  }}
+          MAVEN_PUBLISH_USERNAME: ${{ secrets.NEXUS_USER }}
+          MAVEN_PUBLISH_PASSWORD: ${{ secrets.NEXUS_PW  }}
           GRAILS_PUBLISH_RELEASE: 'false'
         run: ./gradlew publish
       - name: "📖 Generate Snapshot Documentation"
