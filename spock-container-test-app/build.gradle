@@ -1,6 +1,7 @@
 buildscript {
     repositories {
         maven { url = 'https://repo.grails.org/grails/core' }
+        maven { url = 'https://repository.apache.org/content/repositories/snapshots' }
         mavenCentral()
         if (System.getenv("GITHUB_MAVEN_PASSWORD") && !grailsVersion.endsWith('-SNAPSHOT')) {
             System.out.println("Adding Grails Core Repo for project ${project.name}")
@@ -14,19 +15,20 @@ buildscript {
         }
     }
     dependencies {
-        classpath platform("org.grails:grails-bom:$grailsVersion")
-        classpath "org.grails:grails-gradle-plugin"
+        classpath platform("org.apache.grails:grails-bom:$grailsVersion")
+        classpath "org.apache.grails:grails-gradle-plugins"
     }
 }
 
 apply plugin: 'groovy'
-apply plugin: 'org.grails.grails-web'
-apply plugin: 'org.grails.grails-gsp'
+apply plugin: 'org.apache.grails.gradle.grails-web'
+apply plugin: 'org.apache.grails.gradle.grails-gsp'
 
 group = 'org.demo.spock'
 
 repositories {
     maven { url = 'https://repo.grails.org/grails/core' }
+    maven { url = 'https://repository.apache.org/content/repositories/snapshots' }
     mavenCentral()
     if (System.getenv("GITHUB_MAVEN_PASSWORD") && !grailsVersion.endsWith('-SNAPSHOT')) {
         System.out.println("Adding Grails Core Repo for project ${project.name}")
@@ -42,18 +44,23 @@ repositories {
 
 dependencies {
 
-    implementation 'org.grails:grails-core'
-    implementation 'org.grails:grails-logging'
-    implementation 'org.grails:grails-plugin-databinding'
-    implementation 'org.grails:grails-plugin-i18n'
-    implementation 'org.grails:grails-plugin-interceptors'
-    implementation 'org.grails:grails-plugin-rest'
-    implementation 'org.grails:grails-plugin-services'
-    implementation 'org.grails:grails-plugin-url-mappings'
-    implementation 'org.grails:grails-web-boot'
+    implementation(platform("org.apache.grails:grails-bom:$grailsVersion"))
+
+    implementation 'org.apache.grails:grails-core'
+    implementation 'org.apache.grails:grails-logging'
+    implementation 'org.apache.grails:grails-databinding'
+    implementation 'org.apache.grails:grails-i18n'
+    implementation 'org.apache.grails:grails-interceptors'
+    implementation 'org.apache.grails:grails-rest-transforms'
+    implementation 'org.apache.grails:grails-services'
+    implementation 'org.apache.grails:grails-url-mappings'
+    implementation 'org.apache.grails.web:grails-web-boot'
     implementation 'org.grails.plugins:gsp'
     implementation 'org.grails.plugins:hibernate5'
-    implementation 'org.grails.plugins:scaffolding'
+    implementation 'org.grails.plugins:scaffolding', {
+        exclude group: 'org.grails', module: 'grails-plugin-rest' // TODO: Remove after views are published
+    }
+    implementation 'org.apache.grails:grails-rest-transforms' // TODO: Remove after views are published
     implementation 'org.springframework.boot:spring-boot-autoconfigure'
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
@@ -66,11 +73,19 @@ dependencies {
     runtimeOnly 'org.apache.tomcat:tomcat-jdbc'
     runtimeOnly 'org.fusesource.jansi:jansi'
 
-    testImplementation 'org.grails:grails-gorm-testing-support'
-    testImplementation 'org.grails:grails-web-testing-support'
+    testImplementation 'org.grails:grails-gorm-testing-support', {
+        exclude group: 'org.grails', module: 'grails-testing-support' // TODO: Remove after gorm is published
+    }
+    testImplementation "org.grails:grails-web-testing-support", {
+        exclude group: 'org.grails', module: 'grails-testing-support' // TODO: Remove after views are published
+        exclude group: 'org.grails', module: 'grails-plugin-rest' // TODO: Remove after views are published
+        exclude group: 'org.grails', module: 'grails-plugin-interceptors' // TODO: remove after views are published
+    }
+    testImplementation 'org.apache.grails:grails-interceptors' // TODO: remove after views are published
+    testImplementation 'org.apache.grails.testing:grails-testing-support-core' // TODO: Remove after views are published
     testImplementation 'org.spockframework:spock-core'
 
-    integrationTestImplementation testFixtures('org.grails.plugins:geb')
+    integrationTestImplementation testFixtures('org.apache.grails:grails-geb')
 }
 
 compileJava.options.release = 17

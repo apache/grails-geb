@@ -11,10 +11,11 @@ buildscript {
                 }
             }
         }
+        maven { url = 'https://repository.apache.org/content/repositories/snapshots' }
     }
     dependencies {
-        classpath platform("org.grails:grails-bom:$grailsVersion")
-        classpath "org.grails:grails-gradle-plugin"
+        classpath platform("org.apache.grails:grails-bom:$grailsVersion")
+        classpath "org.apache.grails:grails-gradle-plugins"
     }
 }
 
@@ -23,12 +24,12 @@ plugins {
 }
 
 version = projectVersion
-group = 'org.grails.plugins'
+group = 'org.apache.grails'
 
 apply plugin: 'java-library'
 apply plugin: 'java-test-fixtures'
-apply plugin: 'org.grails.grails-plugin'
-apply plugin: 'org.grails.grails-publish'
+apply plugin: 'org.apache.grails.gradle.grails-plugin'
+apply plugin: 'org.apache.grails.gradle.grails-publish'
 
 tasks.withType(JavaCompile).configureEach {
     options.release = 17
@@ -36,6 +37,7 @@ tasks.withType(JavaCompile).configureEach {
 
 repositories {
     maven { url = 'https://repo.grails.org/grails/core' }
+    maven { url = 'https://repository.apache.org/content/repositories/snapshots' }
     if (System.getenv("GITHUB_MAVEN_PASSWORD") && !grailsVersion.endsWith('-SNAPSHOT')) {
         System.out.println("Adding Grails Core Repo for project ${project.name}")
         maven {
@@ -53,16 +55,20 @@ configurations.register('documentation')
 ext.set('selenium.version', seleniumVersion) // Override selenium version from spring-boot-dependencies
 
 dependencies {
+    // Because this is a grails plugin and the gradle grails-plugin is applied, these won't be used due to the mavenBom apply
+    // For most core projects, we don't apply the plugin and only add what we need so we need the platform
+    // for consistency, add the platform here and later move away from the grails-plugin gradle plugin apply
+    implementation(platform("org.apache.grails:grails-bom:$grailsVersion"))
+    testFixturesApi(platform("org.apache.grails:grails-bom:$grailsVersion"))
+    testFixturesImplementation(platform("org.apache.grails:grails-bom:$grailsVersion"))
 
-    implementation(platform("org.grails:grails-bom:$grailsVersion"))
-
-    compileOnly 'org.grails:grails-core' // Provided, as this is a Grails plugin
+    compileOnly 'org.apache.grails:grails-core' // Provided, as this is a Grails plugin
 
     testFixturesCompileOnly 'jakarta.servlet:jakarta.servlet-api'
     testFixturesCompileOnly 'org.slf4j:slf4j-simple' // Remove compilation warning about missing slf4j impl
 
     testFixturesApi 'org.gebish:geb-spock'
-    testFixturesApi 'org.grails:grails-testing-support'
+    testFixturesApi 'org.apache.grails.testing:grails-testing-support-core'
     testFixturesApi 'org.grails:grails-datastore-gorm'
     testFixturesApi "org.testcontainers:selenium:$testcontainersVersion"
     testFixturesApi "org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion"
@@ -81,7 +87,7 @@ dependencies {
 }
 
 grailsPublish {
-    githubSlug = 'grails/geb'
+    githubSlug = 'apache/grails-geb'
     license {
         name = 'Apache-2.0'
     }
