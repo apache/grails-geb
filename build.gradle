@@ -69,7 +69,7 @@ dependencies {
 
     testFixturesApi 'org.gebish:geb-spock'
     testFixturesApi 'org.apache.grails.testing:grails-testing-support-core'
-    testFixturesApi 'org.grails:grails-datastore-gorm'
+    testFixturesApi 'org.apache.grails.data:grails-datamapping-core'
     testFixturesApi "org.testcontainers:selenium:$testcontainersVersion"
     testFixturesApi "org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion"
     testFixturesApi "org.seleniumhq.selenium:selenium-remote-driver:$seleniumVersion"
