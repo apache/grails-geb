@@ -55,9 +55,9 @@ dependencies {
     implementation 'org.apache.grails:grails-services'
     implementation 'org.apache.grails:grails-url-mappings'
     implementation 'org.apache.grails.web:grails-web-boot'
-    implementation 'org.grails.plugins:gsp'
-    implementation 'org.grails.plugins:hibernate5'
-    implementation 'org.grails.plugins:scaffolding'
+    implementation 'org.apache.grails:grails-gsp'
+    implementation 'org.apache.grails:grails-data-hibernate5'
+    implementation 'org.apache.grails:grails-scaffolding'
     implementation 'org.springframework.boot:spring-boot-autoconfigure'
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
@@ -70,8 +70,8 @@ dependencies {
     runtimeOnly 'org.apache.tomcat:tomcat-jdbc'
     runtimeOnly 'org.fusesource.jansi:jansi'
 
-    testImplementation 'org.grails:grails-gorm-testing-support'
-    testImplementation "org.grails:grails-web-testing-support"
+    testImplementation 'org.apache.grails:grails-testing-support-datamapping'
+    testImplementation 'org.apache.grails:grails-testing-support-web'
     testImplementation 'org.spockframework:spock-core'
 
     integrationTestImplementation testFixtures('org.apache.grails:grails-geb')
