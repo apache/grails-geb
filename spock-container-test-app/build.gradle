@@ -17,12 +17,14 @@ buildscript {
     dependencies {
         classpath platform("org.apache.grails:grails-bom:$grailsVersion")
         classpath "org.apache.grails:grails-gradle-plugins"
+        classpath "com.bertramlabs.plugins:asset-pipeline-gradle"
     }
 }
 
 apply plugin: 'groovy'
 apply plugin: 'org.apache.grails.gradle.grails-web'
 apply plugin: 'org.apache.grails.gradle.grails-gsp'
+apply plugin: 'asset-pipeline'
 
 group = 'org.demo.spock'
 
