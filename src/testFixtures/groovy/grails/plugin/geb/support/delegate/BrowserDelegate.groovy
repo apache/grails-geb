@@ -405,6 +405,11 @@ trait BrowserDelegate {
      */
     @CompileDynamic
     def methodMissing(String name, args) {
+        if (name == 'fileDetector') {
+            // Workaround for initializationError
+            // TODO: Find better solution
+            return null
+        }
         browser.page."$name"(*args)
     }
 
