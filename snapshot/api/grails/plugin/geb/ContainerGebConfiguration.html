@@ -145,11 +145,16 @@ if (location.href.indexOf('is-external=true') == -1) {
                         </tr>
                         
                         <tr class="altColor">
+                            <td class="colFirst"><code><strong>static&nbsp;java.lang.Class&lt;? extends <a href='../../../grails/plugin/geb/ContainerFileDetector.html' title='ContainerFileDetector'>ContainerFileDetector</a>&gt;</strong></code>&nbsp;</td>
+                            <td class="colLast"><code><a href="#DEFAULT_FILE_DETECTOR">DEFAULT_FILE_DETECTOR</a></code><br></td>
+                        </tr>
+                        
+                        <tr class="rowColor">
                             <td class="colFirst"><code><strong>static&nbsp;java.lang.String</strong></code>&nbsp;</td>
                             <td class="colLast"><code><a href="#DEFAULT_HOSTNAME_FROM_CONTAINER">DEFAULT_HOSTNAME_FROM_CONTAINER</a></code><br></td>
                         </tr>
                         
-                        <tr class="rowColor">
+                        <tr class="altColor">
                             <td class="colFirst"><code><strong>static&nbsp;java.lang.String</strong></code>&nbsp;</td>
                             <td class="colLast"><code><a href="#DEFAULT_PROTOCOL">DEFAULT_PROTOCOL</a></code><br></td>
                         </tr>
@@ -180,17 +185,23 @@ if (location.href.indexOf('is-external=true') == -1) {
                         
                         <tr class="altColor">
                             <td class="colFirst"><code></code></td>
-                            <td class="colLast"><code>abstract&nbsp;java.lang.String</code></td>
-                            <td class="colLast"><code><strong><a href="#hostName()">hostName</a></strong>()</code><br>The hostname that the container's browser will use to access the server under test.</td>
+                            <td class="colLast"><code>abstract&nbsp;java.lang.Class&lt;? extends <a href='../../../grails/plugin/geb/ContainerFileDetector.html' title='ContainerFileDetector'>ContainerFileDetector</a>&gt;</code></td>
+                            <td class="colLast"><code><strong><a href="#fileDetector()">fileDetector</a></strong>()</code><br>The org.openqa.selenium.remote.FileDetector implementation to use for this class.</td>
                         </tr>
                         
                         <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>abstract&nbsp;java.lang.String</code></td>
-                            <td class="colLast"><code><strong><a href="#protocol()">protocol</a></strong>()</code><br>The protocol that the container's browser will use to access the server under test.</td>
+                            <td class="colLast"><code><strong><a href="#hostName()">hostName</a></strong>()</code><br>The hostname that the container's browser will use to access the server under test.</td>
                         </tr>
                         
                         <tr class="altColor">
+                            <td class="colFirst"><code></code></td>
+                            <td class="colLast"><code>abstract&nbsp;java.lang.String</code></td>
+                            <td class="colLast"><code><strong><a href="#protocol()">protocol</a></strong>()</code><br>The protocol that the container's browser will use to access the server under test.</td>
+                        </tr>
+                        
+                        <tr class="rowColor">
                             <td class="colFirst"><code></code></td>
                             <td class="colLast"><code>abstract&nbsp;boolean</code></td>
                             <td class="colLast"><code><strong><a href="#reporting()">reporting</a></strong>()</code><br>Whether reporting should be enabled for this test. </td>
@@ -241,6 +252,14 @@ if (location.href.indexOf('is-external=true') == -1) {
                 </a>
                     <h3>Element Detail</h3>
                     
+                        <a name="DEFAULT_FILE_DETECTOR"><!-- --></a>
+                        <ul class="blockListLast">
+                            <li class="blockList">
+                                <h4>static&nbsp;final&nbsp;java.lang.Class&lt;? extends <a href='../../../grails/plugin/geb/ContainerFileDetector.html' title='ContainerFileDetector'>ContainerFileDetector</a>&gt; <strong>DEFAULT_FILE_DETECTOR</strong></h4>
+                                <p></p>
+                            </li>
+                        </ul>
+                    
                         <a name="DEFAULT_HOSTNAME_FROM_CONTAINER"><!-- --></a>
                         <ul class="blockListLast">
                             <li class="blockList">
@@ -271,6 +290,16 @@ if (location.href.indexOf('is-external=true') == -1) {
                     <!--   -->
                 </a>
                     <h3>Method Detail</h3>
+                    
+                        <a name="fileDetector()"><!-- --></a>
+                        <ul class="blockListLast">
+                            <li class="blockList">
+                                <h4>abstract&nbsp;java.lang.Class&lt;? extends <a href='../../../grails/plugin/geb/ContainerFileDetector.html' title='ContainerFileDetector'>ContainerFileDetector</a>&gt; <strong>fileDetector</strong>()</h4>
+                                <p> The org.openqa.selenium.remote.FileDetector implementation to use for this class.
+ <p> <a href='../../../grails/plugin/geb/NullContainerFileDetector.html' title='NullContainerFileDetector'>NullContainerFileDetector</a> results in the
+     <a href='../../../grails/plugin/geb/serviceloader/ServiceRegistry.html' title='last set'>last set</a> instance being used. <DL><DT><B>Since:</B></DT><DD>4.2</DD></DL><DL><DT><B>See Also:</B></DT><DD><a href='../../../grails/plugin/geb/DefaultContainerFileDetector.html' title='DefaultContainerFileDetector'>DefaultContainerFileDetector</a></DD><DD><a href='../../../grails/plugin/geb/UselessContainerFileDetector.html' title='UselessContainerFileDetector'>UselessContainerFileDetector</a></DD></DL></p>
+                            </li>
+                        </ul>
                     
                         <a name="hostName()"><!-- --></a>
                         <ul class="blockListLast">

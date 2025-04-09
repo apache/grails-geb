@@ -1,3 +1,4 @@
 grails.plugin.geb
+grails.plugin.geb.serviceloader
 grails.plugin.geb.support
 grails.plugin.geb.support.delegate

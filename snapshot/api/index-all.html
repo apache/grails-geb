@@ -165,6 +165,9 @@ if (location.href.indexOf('is-external=true') == -1) {
 </dt><dd> <div class="block">Delegates to <a href='https://www.gebish.org/manual/7.0/api/geb/Browser.html#close()' title='Browser.close'>Browser.close</a>.</div></dd>
 <dt><span class="strong"><a href="grails/plugin/geb/support/ContainerSupport.html#container" title="Property in ContainerSupport">container</a></span> - Property in <a href="grails/plugin/geb/support/ContainerSupport.html">ContainerSupport</a>
 </dt><dd> <div class="block">Get access to container running the web-driver, for convenience to execInContainer, copyFileToContainer etc.</div></dd>
+<dt><span class="strong"><a href="grails/plugin/geb/ContainerFileDetector.html" title="Interface in grails.plugin.geb">ContainerFileDetector</a></span> - Interface in <a href="./grails/plugin/geb/package-summary.html">grails.plugin.geb</a>
+</dt><dd><div class="block">An extension of org.openqa.selenium.remote.FileDetector
+ that will get passed additional parameters from the webdriver container holder.</div></dd>
 <dt><span class="strong"><a href="grails/plugin/geb/ContainerGebConfiguration.html" title="Annotation Type in grails.plugin.geb">ContainerGebConfiguration</a></span> - Annotation Type in <a href="./grails/plugin/geb/package-summary.html">grails.plugin.geb</a>
 </dt><dd><div class="block">Can be used to configure the protocol and hostname that the container's browser will use</div></dd>
 <dt><span class="strong"><a href="grails/plugin/geb/support/ContainerGebFileInputSource.html" title="Class in grails.plugin.geb.support">ContainerGebFileInputSource</a></span> - Class in <a href="./grails/plugin/geb/support/package-summary.html">grails.plugin.geb.support</a>
@@ -204,9 +207,15 @@ if (location.href.indexOf('is-external=true') == -1) {
 <h2 class="title">D</h2>
 <dl>
 
+<dt><span class="strong"><a href="grails/plugin/geb/ContainerGebConfiguration.html#DEFAULT_FILE_DETECTOR" title="Field in ContainerGebConfiguration">DEFAULT_FILE_DETECTOR</a></span> - Field in <a href="grails/plugin/geb/ContainerGebConfiguration.html">ContainerGebConfiguration</a>
+</dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="grails/plugin/geb/ContainerGebConfiguration.html#DEFAULT_HOSTNAME_FROM_CONTAINER" title="Field in ContainerGebConfiguration">DEFAULT_HOSTNAME_FROM_CONTAINER</a></span> - Field in <a href="grails/plugin/geb/ContainerGebConfiguration.html">ContainerGebConfiguration</a>
 </dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="grails/plugin/geb/ContainerGebConfiguration.html#DEFAULT_PROTOCOL" title="Field in ContainerGebConfiguration">DEFAULT_PROTOCOL</a></span> - Field in <a href="grails/plugin/geb/ContainerGebConfiguration.html">ContainerGebConfiguration</a>
+</dt><dd> <div class="block"></div></dd>
+<dt><span class="strong"><a href="grails/plugin/geb/DefaultContainerFileDetector.html" title="Class in grails.plugin.geb">DefaultContainerFileDetector</a></span> - Class in <a href="./grails/plugin/geb/package-summary.html">grails.plugin.geb</a>
+</dt><dd><div class="block">Detects files on the local disk.</div></dd>
+<dt><span class="strong"><a href="grails/plugin/geb/DefaultContainerFileDetector.html#DefaultContainerFileDetector()" title="Constructor in DefaultContainerFileDetector">DefaultContainerFileDetector()</a></span> - Constructor in <a href="grails/plugin/geb/DefaultContainerFileDetector.html">DefaultContainerFileDetector</a>
 </dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="grails/plugin/geb/GebGrailsPlugin.html#description" title="Property in GebGrailsPlugin">description</a></span> - Property in <a href="grails/plugin/geb/GebGrailsPlugin.html">GebGrailsPlugin</a>
 </dt><dd> <div class="block"></div></dd>
@@ -252,6 +261,8 @@ if (location.href.indexOf('is-external=true') == -1) {
 <h2 class="title">F</h2>
 <dl>
 
+<dt><span class="strong"><a href="grails/plugin/geb/ContainerGebConfiguration.html#fileDetector()" title="Method in ContainerGebConfiguration">fileDetector()</a></span> - Method in <a href="grails/plugin/geb/ContainerGebConfiguration.html">ContainerGebConfiguration</a>
+</dt><dd> <div class="block">The org.openqa.selenium.remote.FileDetector implementation to use for this class.</div></dd>
 <dt><span class="strong"><a href="grails/plugin/geb/ContainerGebTestDescription.html#filesystemFriendlyName" title="Property in ContainerGebTestDescription">filesystemFriendlyName</a></span> - Property in <a href="grails/plugin/geb/ContainerGebTestDescription.html">ContainerGebTestDescription</a>
 </dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="grails/plugin/geb/support/delegate/PageDelegate.html#find(Map<String, Object>, java.lang.String, Range<Integer>)" title="Method in PageDelegate">find(Map&lt;String, Object&gt;, java.lang.String, Range&lt;Integer&gt;)</a></span> - Method in <a href="grails/plugin/geb/support/delegate/PageDelegate.html">PageDelegate</a>
@@ -293,6 +304,11 @@ if (location.href.indexOf('is-external=true') == -1) {
 </dt><dd> <div class="block">Delegates to <a href='https://www.gebish.org/manual/7.0/api/geb/Browser.html#getDriver()' title='Browser.getDriver'>Browser.getDriver</a>.</div></dd>
 <dt><span class="strong"><a href="grails/plugin/geb/WebDriverContainerHolder.html#getHostNameFromHost()" title="Method in WebDriverContainerHolder">getHostNameFromHost()</a></span> - Method in <a href="grails/plugin/geb/WebDriverContainerHolder.html">WebDriverContainerHolder</a>
 </dt><dd> <div class="block">Returns the hostname that the server under test is available on from the host.</div></dd>
+<dt><span class="strong"><a href="grails/plugin/geb/serviceloader/ServiceRegistry.html#getInstance(Class<T>, Class<? extends T>)" title="Method in ServiceRegistry">getInstance(Class&lt;T&gt;, Class&lt;? extends T&gt;)</a></span> - Method in <a href="grails/plugin/geb/serviceloader/ServiceRegistry.html">ServiceRegistry</a>
+</dt><dd> <div class="block">Returns the service instance of the given service type, loading it using
+ java.util.ServiceLoader if not already loaded or an instance
+ of the default implementation type if no service implementation is found
+ by the java.util.ServiceLoader.</div></dd>
 <dt><span class="strong"><a href="grails/plugin/geb/support/delegate/BrowserDelegate.html#getJs()" title="Method in BrowserDelegate">getJs()</a></span> - Method in <a href="grails/plugin/geb/support/delegate/BrowserDelegate.html">BrowserDelegate</a>
 </dt><dd> <div class="block">Delegates to <a href='https://www.gebish.org/manual/7.0/api/geb/Browser.html#getJs()' title='Browser.getJs'>Browser.getJs</a>.</div></dd>
 <dt><span class="strong"><a href="grails/plugin/geb/support/delegate/BrowserDelegate.html#getLocalStorage()" title="Method in BrowserDelegate">getLocalStorage()</a></span> - Method in <a href="grails/plugin/geb/support/delegate/BrowserDelegate.html">BrowserDelegate</a>
@@ -414,6 +430,10 @@ if (location.href.indexOf('is-external=true') == -1) {
 </dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="grails/plugin/geb/support/ContainerGebFileInputSource.html#normalizePath(java.lang.String)" title="Method in ContainerGebFileInputSource">normalizePath(java.lang.String)</a></span> - Method in <a href="grails/plugin/geb/support/ContainerGebFileInputSource.html">ContainerGebFileInputSource</a>
 </dt><dd> <div class="block">Normalizes the path for cross-platform compatibility (Windows paths used in Linux containers).</div></dd>
+<dt><span class="strong"><a href="grails/plugin/geb/NullContainerFileDetector.html" title="Class in grails.plugin.geb">NullContainerFileDetector</a></span> - Class in <a href="./grails/plugin/geb/package-summary.html">grails.plugin.geb</a>
+</dt><dd><div class="block">Used by <a href='../../../grails/plugin/geb/ContainerGebConfiguration.html#fileDetector()' title='ContainerGebConfiguration.fileDetector'>ContainerGebConfiguration.fileDetector</a> interface to represent a null value.</div></dd>
+<dt><span class="strong"><a href="grails/plugin/geb/NullContainerFileDetector.html#NullContainerFileDetector()" title="Constructor in NullContainerFileDetector">NullContainerFileDetector()</a></span> - Constructor in <a href="grails/plugin/geb/NullContainerFileDetector.html">NullContainerFileDetector</a>
+</dt><dd> <div class="block"></div></dd>
 </dl>
 
     
@@ -487,11 +507,19 @@ if (location.href.indexOf('is-external=true') == -1) {
 </dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="grails/plugin/geb/GrailsGebSettings.html#scriptTimeout" title="Property in GrailsGebSettings">scriptTimeout</a></span> - Property in <a href="grails/plugin/geb/GrailsGebSettings.html">GrailsGebSettings</a>
 </dt><dd> <div class="block"></div></dd>
+<dt><span class="strong"><a href="grails/plugin/geb/serviceloader/ServiceRegistry.html" title="Class in grails.plugin.geb.serviceloader">ServiceRegistry</a></span> - Class in <a href="./grails/plugin/geb/serviceloader/package-summary.html">grails.plugin.geb.serviceloader</a>
+</dt><dd><div class="block">A service registry that loads and caches different service types using the Java
+ java.util.ServiceLoader, while allowing overriding which instance to return.</div></dd>
+<dt><span class="strong"><a href="grails/plugin/geb/serviceloader/ServiceRegistry.html#ServiceRegistry()" title="Constructor in ServiceRegistry">ServiceRegistry()</a></span> - Constructor in <a href="grails/plugin/geb/serviceloader/ServiceRegistry.html">ServiceRegistry</a>
+</dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="grails/plugin/geb/support/ContainerSupport.html#setContainer(org.testcontainers.containers.BrowserWebDriverContainer)" title="Method in ContainerSupport">setContainer(org.testcontainers.containers.BrowserWebDriverContainer)</a></span> - Method in <a href="grails/plugin/geb/support/ContainerSupport.html">ContainerSupport</a>
 </dt><dd> <div class="block"></div></dd>
 <dt><span class="strong"><a href="grails/plugin/geb/support/ContainerSupport.html#setDownloadSupport(geb.download.DownloadSupport)" title="Method in ContainerSupport">setDownloadSupport(geb.download.DownloadSupport)</a></span> - Method in <a href="grails/plugin/geb/support/ContainerSupport.html">ContainerSupport</a>
 </dt><dd> <div class="block">Sets the DownloadSupport instance to use for file downloads.
  </div></dd>
+<dt><span class="strong"><a href="grails/plugin/geb/serviceloader/ServiceRegistry.html#setInstance(Class<T>, Class<? extends T>)" title="Method in ServiceRegistry">setInstance(Class&lt;T&gt;, Class&lt;? extends T&gt;)</a></span> - Method in <a href="grails/plugin/geb/serviceloader/ServiceRegistry.html">ServiceRegistry</a>
+</dt><dd> <div class="block">Sets the implementation type to return for the given service type, bypassing instance loading
+ from java.util.ServiceLoader.</div></dd>
 <dt><span class="strong"><a href="grails/plugin/geb/support/delegate/BrowserDelegate.html#setNetworkLatency(java.time.Duration)" title="Method in BrowserDelegate">setNetworkLatency(java.time.Duration)</a></span> - Method in <a href="grails/plugin/geb/support/delegate/BrowserDelegate.html">BrowserDelegate</a>
 </dt><dd> <div class="block">Delegates to <a href='https://www.gebish.org/manual/7.0/api/geb/Browser.html#setNetworkLatency(Duration)' title='Browser.setNetworkLatency'>Browser.setNetworkLatency</a>.</div></dd>
 <dt><span class="strong"><a href="grails/plugin/geb/ContainerGebSpec.html#setTestManager(geb.test.GebTestManager)" title="Method in ContainerGebSpec">setTestManager(geb.test.GebTestManager)</a></span> - Method in <a href="grails/plugin/geb/ContainerGebSpec.html">ContainerGebSpec</a>
@@ -534,6 +562,10 @@ if (location.href.indexOf('is-external=true') == -1) {
 <h2 class="title">U</h2>
 <dl>
 
+<dt><span class="strong"><a href="grails/plugin/geb/UselessContainerFileDetector.html" title="Class in grails.plugin.geb">UselessContainerFileDetector</a></span> - Class in <a href="./grails/plugin/geb/package-summary.html">grails.plugin.geb</a>
+</dt><dd><div class="block">A file detector that never finds anything.</div></dd>
+<dt><span class="strong"><a href="grails/plugin/geb/UselessContainerFileDetector.html#UselessContainerFileDetector()" title="Constructor in UselessContainerFileDetector">UselessContainerFileDetector()</a></span> - Constructor in <a href="grails/plugin/geb/UselessContainerFileDetector.html">UselessContainerFileDetector</a>
+</dt><dd> <div class="block"></div></dd>
 </dl>
 
     
