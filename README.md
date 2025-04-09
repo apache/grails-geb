@@ -59,7 +59,10 @@ Parallel execution of `ContainerGebSpec` specifications is not currently support
 
 #### Custom Host Configuration
 
-The annotation `ContainerGebConfiguration` exists to customize the connection the container will use to access the application under test. The annotation is not required and `ContainerGebSpec` will use the default values in this annotation if it's not present.  A traditional `GebConfig.groovy` can be provided to configure non-container specific settings.
+The annotation `ContainerGebConfiguration` exists to customize the connection the container will use to access the application under test.
+The annotation is not required and `ContainerGebSpec` will use the default values in this annotation if it's not present.
+
+The interface `IContainerGebConfiguration` exists as an inheritable version of the annotation.
 
 #### Reporting
 
