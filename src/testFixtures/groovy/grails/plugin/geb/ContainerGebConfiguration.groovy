@@ -68,11 +68,11 @@ import java.lang.annotation.Target
 
 /**
  * Inheritable version of {@link ContainerGebConfiguration}
- * 
+ *
  * @since 4.2
  */
 interface IContainerGebConfiguration {
-    
+
     default String protocol() {
         ContainerGebConfiguration.DEFAULT_PROTOCOL
     }
@@ -83,5 +83,9 @@ interface IContainerGebConfiguration {
 
     default boolean reporting() {
         false
+    }
+
+    default Class<? extends ContainerFileDetector> fileDetector() {
+        ContainerGebConfiguration.DEFAULT_FILE_DETECTOR
     }
 }
