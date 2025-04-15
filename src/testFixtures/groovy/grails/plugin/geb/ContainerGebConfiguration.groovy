@@ -65,3 +65,27 @@ import java.lang.annotation.Target
      */
     Class<? extends ContainerFileDetector> fileDetector() default DefaultContainerFileDetector
 }
+
+/**
+ * Inheritable version of {@link ContainerGebConfiguration}
+ *
+ * @since 4.2
+ */
+interface IContainerGebConfiguration {
+
+    default String protocol() {
+        ContainerGebConfiguration.DEFAULT_PROTOCOL
+    }
+
+    default String hostName() {
+        ContainerGebConfiguration.DEFAULT_HOSTNAME_FROM_CONTAINER
+    }
+
+    default boolean reporting() {
+        false
+    }
+
+    default Class<? extends ContainerFileDetector> fileDetector() {
+        ContainerGebConfiguration.DEFAULT_FILE_DETECTOR
+    }
+}

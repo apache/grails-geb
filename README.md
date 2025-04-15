@@ -59,7 +59,10 @@ Parallel execution of `ContainerGebSpec` specifications is not currently support
 
 #### Custom Host Configuration
 
-The annotation `ContainerGebConfiguration` exists to customize the connection the container will use to access the application under test. The annotation is not required and `ContainerGebSpec` will use the default values in this annotation if it's not present.  A traditional `GebConfig.groovy` can be provided to configure non-container specific settings.
+The annotation `ContainerGebConfiguration` exists to customize the connection the container will use to access the application under test.
+The annotation is not required and `ContainerGebSpec` will use the default values in this annotation if it's not present.
+
+The interface `IContainerGebConfiguration` exists as an inheritable version of the annotation.
 
 #### Reporting
 
@@ -73,10 +76,12 @@ To configure reporting, enable it using the `recording` property on the annotati
 
 By default, no test recording will be performed.  Various system properties exist to change the recording behavior.  To set them, you can set them in your `build.gradle` file like so:
 
-    tasks.withType(Test) {
-      useJUnitPlatform()
-      systemProperty 'grails.geb.recording.mode', 'RECORD_ALL'
-    }
+```groovy
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+    systemProperty('grails.geb.recording.mode', 'RECORD_ALL')
+}
+```
 
 * `grails.geb.recording.mode`
   * purpose: which tests to record
