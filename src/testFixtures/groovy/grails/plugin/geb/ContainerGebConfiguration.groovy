@@ -69,7 +69,11 @@ import java.lang.annotation.Target
     /**
      * The {@link org.testcontainers.lifecycle.TestDescription} implementation to use for this class.
      * <p> {@link NullContainerGebTestDescription} results in the
-     *     {@link grails.plugin.geb.serviceloader.ContainerGebTestDescriptionServiceLoader last set} instance being used.
+     *     {@link grails.plugin.geb.serviceloader.ServiceRegistry last set} instance being used.
+     *     
+     * @since 4.2
+     * @see grails.plugin.geb.DefaultContainerGebTestDescription DefaultContainerGebTestDescription
+     * @see grails.plugin.geb.UselessContainerFileDetector UselessContainerFileDetector
      */
     Class<? extends ContainerGebTestDescription> testDescription() default NullContainerGebTestDescription
 }
@@ -97,7 +101,7 @@ interface IContainerGebConfiguration {
         ContainerGebConfiguration.DEFAULT_FILE_DETECTOR
     }
     
-    default Class<? extends ContainerFileDetector> testDescription() {
+    default Class<? extends ContainerGebTestDescription> testDescription() {
         ContainerGebConfiguration.DEFAULT_TEST_DESCRIPTION
     }
 }

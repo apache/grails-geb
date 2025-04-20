@@ -1,18 +1,19 @@
 package org.demo.spock
 
 import grails.plugin.geb.ContainerGebSpec
-import grails.plugin.geb.serviceloader.ContainerGebTestDescriptionServiceLoader
+import grails.plugin.geb.ContainerGebTestDescription
+import grails.plugin.geb.serviceloader.ServiceRegistry
 import grails.testing.mixin.integration.Integration
 
 @Integration
 class ContainerGebTestDescriptionSpec extends ContainerGebSpec {
 
     def setupSpec(){
-        ContainerGebTestDescriptionServiceLoader.setInstance(new ContainerGebTestDescriptionImpl())
+        ServiceRegistry.setInstance(ContainerGebTestDescription, new ContainerGebTestDescriptionImpl())
     }
 
     def cleanupSpec(){
-        ContainerGebTestDescriptionServiceLoader.setInstance(null)
+        ServiceRegistry.setInstance(ContainerGebTestDescription, null)
     }
 
     /**

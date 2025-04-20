@@ -15,7 +15,8 @@
  */
 package grails.plugin.geb
 
-import grails.plugin.geb.serviceloader.ContainerGebTestDescriptionServiceLoader
+
+import grails.plugin.geb.serviceloader.ServiceRegistry
 import groovy.transform.CompileStatic
 import org.spockframework.runtime.AbstractRunListener
 import org.spockframework.runtime.model.ErrorInfo
@@ -42,14 +43,12 @@ class GebRecordingTestListener extends AbstractRunListener {
 
     @Override
     void afterIteration(IterationInfo iteration) {
-        ContainerGebTestDescription testContainerDescription = ContainerGebTestDescriptionServiceLoader.getInstance()
+        ContainerGebTestDescription testContainerDescription = ServiceRegistry.getInstance(ContainerGebTestDescription, ContainerGebConfiguration.DEFAULT_TEST_DESCRIPTION)
         testContainerDescription.errorInfo = errorInfo
         testContainerDescription.iterationInfo = iteration
 
-        containerHolder.currentContainer.afterTest(
-                testContainerDescription,
-                Optional.ofNullable(testContainerDescription.errorInfo?.exception)
-        )
+        containerHolder.currentContainer.afterTest(testContainerDescription,
+                Optional.ofNullable(testContainerDescription.errorInfo?.exception))
         errorInfo = null
     }
 
