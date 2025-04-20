@@ -26,6 +26,7 @@ import org.testcontainers.lifecycle.TestDescription
  * <p>
  * Implementations must provide a zero-argument constructor to ensure compatibility with {@link java.util.ServiceLoader}.
  *
+ * @since 4.2
  * @see GebRecordingTestListener
  */
 @CompileStatic
