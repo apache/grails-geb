@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Class org.demo.spock.DownloadSupportSpec</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Class org.demo.spock.DownloadSupportSpec</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/org.demo.spock.html">org.demo.spock</a> &gt; DownloadSupportSpec</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">1.130s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">should be able to use download methods</td>
+<td class="success">1.130s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>
+&gt;                                                                            &lt;
+&gt;                            ____           _ _                              &lt;
+&gt;                           / ___|_ __ __ _(_) |___                          &lt;
+&gt;                          | |  _| '__/ _` | | / __|                         &lt;
+&gt;                          | |_| | | | (_| | | \__ \                         &lt;
+&gt;                           \____|_|  \__,_|_|_|___/                         &lt;
+&gt;                              https://grails.org                            &lt;
+&gt;                                                                            &lt;
+
+Grails application running at http://localhost:63873 in environment: test
+2025-04-04T03:52:00.800-04:00 ERROR 18933 --- [o-auto-1-exec-7] .C.[.[.[.[dispatcherServletRegistration] : Servlet.service() for servlet [dispatcherServletRegistration] in context with path [] threw exception [Filter execution threw an exception] with root cause
+
+java.lang.ClassNotFoundException: org.graalvm.polyglot.Context
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method)
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3402)
+	at java.base/java.lang.Class.privateGetPublicMethods(Class.java:3427)
+	at java.base/java.lang.Class.getMethods(Class.java:2019)
+	at java.desktop/com.sun.beans.introspect.MethodInfo.get(MethodInfo.java:70)
+	at java.desktop/com.sun.beans.introspect.ClassInfo.getMethods(ClassInfo.java:80)
+	at java.desktop/java.beans.Introspector.getTargetMethodInfo(Introspector.java:1029)
+	at java.desktop/java.beans.Introspector.getBeanInfo(Introspector.java:446)
+	at java.desktop/java.beans.Introspector.getBeanInfo(Introspector.java:195)
+	at groovy.lang.MetaClassImpl.lambda$addProperties$25(MetaClassImpl.java:3466)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at groovy.lang.MetaClassImpl.doPrivileged(MetaClassImpl.java:3519)
+	at groovy.lang.MetaClassImpl.addProperties(MetaClassImpl.java:3466)
+	at groovy.lang.MetaClassImpl.reinitialize(MetaClassImpl.java:3448)
+	at groovy.lang.MetaClassImpl.initialize(MetaClassImpl.java:3441)
+	at org.codehaus.groovy.reflection.ClassInfo.getMetaClassUnderLock(ClassInfo.java:272)
+	at org.codehaus.groovy.reflection.ClassInfo.getMetaClass(ClassInfo.java:314)
+	at org.codehaus.groovy.runtime.metaclass.MetaClassRegistryImpl.getMetaClass(MetaClassRegistryImpl.java:269)
+	at org.codehaus.groovy.runtime.InvokerHelper.getMetaClass(InvokerHelper.java:596)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.createCallStaticSite(CallSiteArray.java:69)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.createCallSite(CallSiteArray.java:159)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.call(StaticMetaMethodSite.java:95)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:139)
+	at asset.pipeline.AbstractAssetFile.processedStream(AbstractAssetFile.groovy:180)
+	at asset.pipeline.AbstractAssetFile.processedStream(AbstractAssetFile.groovy)
+	at asset.pipeline.DirectiveProcessor.fileContents(DirectiveProcessor.groovy:320)
+	at asset.pipeline.DirectiveProcessor$fileContents$2.call(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at asset.pipeline.DirectiveProcessor$fileContents$2.call(Unknown Source)
+	at asset.pipeline.AssetPipeline.serveUncompiledAsset(AssetPipeline.groovy:67)
+	at asset.pipeline.AssetPipelineFilter.doFilterInternal(AssetPipelineFilter.groovy:284)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:114)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+2025-04-04T03:52:00.800-04:00 ERROR 18933 --- [o-auto-1-exec-8] .C.[.[.[.[dispatcherServletRegistration] : Servlet.service() for servlet [dispatcherServletRegistration] in context with path [] threw exception [Filter execution threw an exception] with root cause
+
+java.lang.ClassNotFoundException: org.graalvm.polyglot.Context
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method)
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3402)
+	at java.base/java.lang.Class.privateGetPublicMethods(Class.java:3427)
+	at java.base/java.lang.Class.getMethods(Class.java:2019)
+	at java.desktop/com.sun.beans.introspect.MethodInfo.get(MethodInfo.java:70)
+	at java.desktop/com.sun.beans.introspect.ClassInfo.getMethods(ClassInfo.java:80)
+	at java.desktop/java.beans.Introspector.getTargetMethodInfo(Introspector.java:1029)
+	at java.desktop/java.beans.Introspector.getBeanInfo(Introspector.java:446)
+	at java.desktop/java.beans.Introspector.getBeanInfo(Introspector.java:195)
+	at groovy.lang.MetaClassImpl.lambda$addProperties$25(MetaClassImpl.java:3466)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at groovy.lang.MetaClassImpl.doPrivileged(MetaClassImpl.java:3519)
+	at groovy.lang.MetaClassImpl.addProperties(MetaClassImpl.java:3466)
+	at groovy.lang.MetaClassImpl.reinitialize(MetaClassImpl.java:3448)
+	at groovy.lang.MetaClassImpl.initialize(MetaClassImpl.java:3441)
+	at org.codehaus.groovy.reflection.ClassInfo.getMetaClassUnderLock(ClassInfo.java:272)
+	at org.codehaus.groovy.reflection.ClassInfo.getMetaClass(ClassInfo.java:314)
+	at org.codehaus.groovy.runtime.metaclass.MetaClassRegistryImpl.getMetaClass(MetaClassRegistryImpl.java:269)
+	at org.codehaus.groovy.runtime.InvokerHelper.getMetaClass(InvokerHelper.java:596)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.createCallStaticSite(CallSiteArray.java:69)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.createCallSite(CallSiteArray.java:159)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.call(StaticMetaMethodSite.java:95)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:139)
+	at asset.pipeline.AbstractAssetFile.processedStream(AbstractAssetFile.groovy:180)
+	at asset.pipeline.AbstractAssetFile.processedStream(AbstractAssetFile.groovy)
+	at asset.pipeline.DirectiveProcessor.fileContents(DirectiveProcessor.groovy:320)
+	at asset.pipeline.DirectiveProcessor$fileContents$2.call(Unknown Source)
+	at asset.pipeline.AssetPipeline.serveUncompiledAsset(AssetPipeline.groovy:67)
+	at asset.pipeline.AssetPipelineFilter.doFilterInternal(AssetPipelineFilter.groovy:284)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:114)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+2025-04-04T03:52:00.835-04:00 ERROR 18933 --- [o-auto-1-exec-5] .C.[.[.[.[dispatcherServletRegistration] : Servlet.service() for servlet [dispatcherServletRegistration] in context with path [] threw exception [Filter execution threw an exception] with root cause
+
+java.lang.ClassNotFoundException: org.graalvm.polyglot.Context
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method)
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3402)
+	at java.base/java.lang.Class.privateGetPublicMethods(Class.java:3427)
+	at java.base/java.lang.Class.getMethods(Class.java:2019)
+	at java.desktop/com.sun.beans.introspect.MethodInfo.get(MethodInfo.java:70)
+	at java.desktop/com.sun.beans.introspect.ClassInfo.getMethods(ClassInfo.java:80)
+	at java.desktop/java.beans.Introspector.getTargetMethodInfo(Introspector.java:1029)
+	at java.desktop/java.beans.Introspector.getBeanInfo(Introspector.java:446)
+	at java.desktop/java.beans.Introspector.getBeanInfo(Introspector.java:195)
+	at groovy.lang.MetaClassImpl.lambda$addProperties$25(MetaClassImpl.java:3466)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at groovy.lang.MetaClassImpl.doPrivileged(MetaClassImpl.java:3519)
+	at groovy.lang.MetaClassImpl.addProperties(MetaClassImpl.java:3466)
+	at groovy.lang.MetaClassImpl.reinitialize(MetaClassImpl.java:3448)
+	at groovy.lang.MetaClassImpl.initialize(MetaClassImpl.java:3441)
+	at org.codehaus.groovy.reflection.ClassInfo.getMetaClassUnderLock(ClassInfo.java:272)
+	at org.codehaus.groovy.reflection.ClassInfo.getMetaClass(ClassInfo.java:314)
+	at org.codehaus.groovy.runtime.metaclass.MetaClassRegistryImpl.getMetaClass(MetaClassRegistryImpl.java:269)
+	at org.codehaus.groovy.runtime.InvokerHelper.getMetaClass(InvokerHelper.java:596)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.createCallStaticSite(CallSiteArray.java:69)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.createCallSite(CallSiteArray.java:159)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.call(StaticMetaMethodSite.java:95)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:139)
+	at asset.pipeline.AbstractAssetFile.processedStream(AbstractAssetFile.groovy:180)
+	at asset.pipeline.AbstractAssetFile.processedStream(AbstractAssetFile.groovy)
+	at asset.pipeline.DirectiveProcessor.fileContents(DirectiveProcessor.groovy:320)
+	at asset.pipeline.DirectiveProcessor$fileContents$2.call(Unknown Source)
+	at asset.pipeline.AssetPipeline.serveUncompiledAsset(AssetPipeline.groovy:67)
+	at asset.pipeline.AssetPipelineFilter.doFilterInternal(AssetPipelineFilter.groovy:284)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:114)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+2025-04-04T03:52:00.836-04:00 ERROR 18933 --- [o-auto-1-exec-3] .C.[.[.[.[dispatcherServletRegistration] : Servlet.service() for servlet [dispatcherServletRegistration] in context with path [] threw exception [Filter execution threw an exception] with root cause
+
+java.lang.ClassNotFoundException: org.graalvm.polyglot.Context
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method)
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3402)
+	at java.base/java.lang.Class.privateGetPublicMethods(Class.java:3427)
+	at java.base/java.lang.Class.getMethods(Class.java:2019)
+	at java.desktop/com.sun.beans.introspect.MethodInfo.get(MethodInfo.java:70)
+	at java.desktop/com.sun.beans.introspect.ClassInfo.getMethods(ClassInfo.java:80)
+	at java.desktop/java.beans.Introspector.getTargetMethodInfo(Introspector.java:1029)
+	at java.desktop/java.beans.Introspector.getBeanInfo(Introspector.java:446)
+	at java.desktop/java.beans.Introspector.getBeanInfo(Introspector.java:195)
+	at groovy.lang.MetaClassImpl.lambda$addProperties$25(MetaClassImpl.java:3466)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	at groovy.lang.MetaClassImpl.doPrivileged(MetaClassImpl.java:3519)
+	at groovy.lang.MetaClassImpl.addProperties(MetaClassImpl.java:3466)
+	at groovy.lang.MetaClassImpl.reinitialize(MetaClassImpl.java:3448)
+	at groovy.lang.MetaClassImpl.initialize(MetaClassImpl.java:3441)
+	at org.codehaus.groovy.reflection.ClassInfo.getMetaClassUnderLock(ClassInfo.java:272)
+	at org.codehaus.groovy.reflection.ClassInfo.getMetaClass(ClassInfo.java:314)
+	at org.codehaus.groovy.runtime.metaclass.MetaClassRegistryImpl.getMetaClass(MetaClassRegistryImpl.java:269)
+	at org.codehaus.groovy.runtime.InvokerHelper.getMetaClass(InvokerHelper.java:596)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.createCallStaticSite(CallSiteArray.java:69)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.createCallSite(CallSiteArray.java:159)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.call(StaticMetaMethodSite.java:95)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:139)
+	at asset.pipeline.AbstractAssetFile.processedStream(AbstractAssetFile.groovy:180)
+	at asset.pipeline.AbstractAssetFile.processedStream(AbstractAssetFile.groovy)
+	at asset.pipeline.DirectiveProcessor.fileContents(DirectiveProcessor.groovy:320)
+	at asset.pipeline.DirectiveProcessor$fileContents$2.call(Unknown Source)
+	at asset.pipeline.AssetPipeline.serveUncompiledAsset(AssetPipeline.groovy:67)
+	at asset.pipeline.AssetPipelineFilter.doFilterInternal(AssetPipelineFilter.groovy:284)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:114)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 8.11.1</a> at Apr 4, 2025, 3:52:24 AM</p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,6 @@
+#Fri, 04 Apr 2025 03:51:46 -0400
+
+info.app.version=0.1
+info.app.name=spock-container-test-app
+grails.env=production
+info.app.grailsVersion=7.0.0-SNAPSHOT
