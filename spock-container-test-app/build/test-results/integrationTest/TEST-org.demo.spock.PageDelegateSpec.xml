@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.demo.spock.PageDelegateSpec" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-04-04T07:52:01" hostname="macjdaugherty02" time="0.218">
-  <properties/>
-  <testcase name="should delegate to page object" classname="org.demo.spock.PageDelegateSpec" time="0.218"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
